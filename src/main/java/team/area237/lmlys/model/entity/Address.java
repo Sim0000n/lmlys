@@ -1,4 +1,4 @@
-package team.area237.lmlys.entity;
+package team.area237.lmlys.model.entity;
 
 public class Address {
     private String province;

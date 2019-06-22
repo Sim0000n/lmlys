@@ -1,4 +1,4 @@
-package team.area237.lmlys.entity;
+package team.area237.lmlys.model.entity;
 
 public abstract class User {
     //管理员账户从1开始，普通用户从1001开始。
