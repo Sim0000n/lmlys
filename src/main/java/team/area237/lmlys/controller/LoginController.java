@@ -1,5 +1,6 @@
 package team.area237.lmlys.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,14 +9,18 @@ import team.area237.lmlys.model.response.LoginResponse;
 import team.area237.lmlys.service.LoginService;
 import team.area237.lmlys.utils.ResponseWrapper;
 
+
+import javax.servlet.http.HttpSession;
+
 import static team.area237.lmlys.utils.ResponseStatus.OK;
 
 @RestController
 public class LoginController {
     @Autowired
     private LoginService loginService;
+    @Autowired
     @RequestMapping("/login")
-    public ResponseWrapper<LoginResponse> login(@RequestParam(value = "loginName", required = true)String loginName, @RequestParam(value = "password", required = true)String password) {
+    public ResponseWrapper<LoginResponse> login(@RequestParam(value = "loginName", required = true)String loginName, @RequestParam(value = "password", required = true)String password, HttpSession session) {
         String em = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
         String ph = "^[1][34578]\\d{9}$";
         LoginResponse loginResponse;
@@ -29,6 +34,7 @@ public class LoginController {
         }
         if(loginResponse == null)
             return new ResponseWrapper<LoginResponse>(OK, "登录失败");
+        session.setAttribute("user_name", loginResponse.getUserName());
         return new ResponseWrapper<LoginResponse>(OK, "登录成功", loginResponse);
     }
 }
