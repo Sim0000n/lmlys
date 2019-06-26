@@ -1,8 +1,8 @@
 package team.area237.lmlys.dao;
 
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
-import team.area237.lmlys.model.response.LoginResponse;
+        import org.apache.ibatis.annotations.Param;
+        import org.springframework.stereotype.Component;
+        import team.area237.lmlys.model.response.LoginResponse;
 
 @Component
 public interface LoginDao {
