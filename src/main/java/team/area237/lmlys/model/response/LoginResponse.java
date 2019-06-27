@@ -1,13 +1,24 @@
 package team.area237.lmlys.model.response;
 
 public class LoginResponse {
-    private String userName;
+    //0:login success, 1:wrong password, 2:username invalid
+    private int status;
 
-    public String getUserName() {
-        return userName;
+    private String username = null;
+
+    public int getStatus() {
+        return status;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

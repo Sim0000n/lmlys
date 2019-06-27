@@ -19,12 +19,12 @@ import static team.area237.lmlys.utils.ResponseStatus.OK;
 public class LoginController {
     @Autowired
     private LoginService loginService;
-    @RequestMapping("/login")
+    @RequestMapping("posts/login")
     public ResponseWrapper<LoginResponse> login(@RequestBody LoginRequest loginRequest, HttpSession session) {
         String em = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
         String ph = "^[1][34578]\\d{9}$";
         LoginResponse loginResponse;
-        String loginName = loginRequest.getLoginName();
+        String loginName = loginRequest.getUsername();
         String password = loginRequest.getPassword();
         //user name login type = 0, email login type = 1, mobile login type = 2
         if(loginName.matches(em)){
@@ -34,9 +34,8 @@ public class LoginController {
         } else {
             loginResponse = loginService.login(loginName, password, 0);
         }
-        if(loginResponse == null)
-            return new ResponseWrapper<LoginResponse>(OK, "登录失败");
-        session.setAttribute("user_name", loginResponse.getUserName());
+        if(loginResponse.getStatus() == 0)
+            session.setAttribute("username", loginResponse.getUsername());
         return new ResponseWrapper<LoginResponse>(OK, "登录成功", loginResponse);
     }
 }

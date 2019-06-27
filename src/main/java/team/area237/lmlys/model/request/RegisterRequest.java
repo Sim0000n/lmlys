@@ -1,9 +1,6 @@
 package team.area237.lmlys.model.request;
 
-import org.springframework.stereotype.Component;
-
-@Component
-public class LoginRequest {
+public class RegisterRequest {
     private String username;
     private String password;
 
