@@ -22,7 +22,7 @@ public class LoginServiceImpl implements LoginService {
         try {
             password = Aes.encryptAes(password);
         }catch (Exception e){
-            //待处理
+            e.printStackTrace();
         }
         Customer user = null;
         if(type == 0) {
