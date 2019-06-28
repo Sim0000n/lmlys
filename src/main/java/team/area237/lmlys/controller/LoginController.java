@@ -4,6 +4,7 @@ package team.area237.lmlys.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import team.area237.lmlys.model.request.LoginRequest;
 import team.area237.lmlys.model.response.LoginResponse;
@@ -19,8 +20,8 @@ import static team.area237.lmlys.utils.ResponseStatus.OK;
 public class LoginController {
     @Autowired
     private LoginService loginService;
-    @RequestMapping("posts/login")
-    public ResponseWrapper<LoginResponse> login(@RequestBody LoginRequest loginRequest, HttpSession session) {
+    @RequestMapping("/posts/login")
+    public ResponseWrapper login(@RequestBody LoginRequest loginRequest, HttpSession session) {
         String em = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
         String ph = "^[1][34578]\\d{9}$";
         LoginResponse loginResponse;
@@ -36,6 +37,20 @@ public class LoginController {
         }
         if(loginResponse.getStatus() == 0)
             session.setAttribute("username", loginResponse.getUsername());
-        return new ResponseWrapper<LoginResponse>(OK, "登录成功", loginResponse);
+        return new ResponseWrapper(OK, "登录成功", loginResponse);
     }
+
+    @RequestMapping("/posts/username")
+    public ResponseWrapper isLogin(HttpSession session) {
+        Object username = session.getAttribute("username");
+        LoginResponse loginResponse = new LoginResponse();
+        if(username != null) {
+            loginResponse.setStatus(0);
+            loginResponse.setUsername((String)username);
+        } else {
+            loginResponse.setStatus(1);
+        }
+        return new ResponseWrapper(OK, loginResponse);
+    }
+
 }
