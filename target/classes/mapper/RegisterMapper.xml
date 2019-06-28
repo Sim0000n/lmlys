@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.area237.lmlys.dao.RegisterDao">
+    <select id="selectByUsername" resultType="String">
+    select username from user where username = #{username}
+    </select>
+    <insert id="addUser">
+    INSERT INTO user(username,password) VALUES(#{username},#{password})
+   </insert>
+</mapper>

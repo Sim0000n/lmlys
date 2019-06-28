@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import team.area237.lmlys.model.request.LoginRequest;
 import team.area237.lmlys.model.response.LoginResponse;
 import team.area237.lmlys.service.LoginService;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import static team.area237.lmlys.utils.ResponseStatus.OK;
 
+@EnableWebMvc
 @RestController
 public class LoginController {
     @Autowired
