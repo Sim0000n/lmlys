@@ -2,10 +2,7 @@ package team.area237.lmlys.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import team.area237.lmlys.model.request.LoginRequest;
 import team.area237.lmlys.model.response.LoginResponse;
@@ -22,8 +19,10 @@ import static team.area237.lmlys.utils.ResponseStatus.OK;
 public class LoginController {
     @Autowired
     private LoginService loginService;
-    @RequestMapping("/posts/login")
+
+    @PostMapping("/posts/login")
     public ResponseWrapper login(@RequestBody LoginRequest loginRequest, HttpSession session) {
+        System.out.println("login controller");
         String em = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
         String ph = "^[1][34578]\\d{9}$";
         LoginResponse loginResponse;

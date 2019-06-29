@@ -1,9 +1,7 @@
 package team.area237.lmlys.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import team.area237.lmlys.model.request.RegisterRequest;
 import team.area237.lmlys.model.response.RegisterResponse;
 import team.area237.lmlys.service.RegisterService;
@@ -27,9 +25,9 @@ public class RegisterController {
         return new ResponseWrapper(OK, registerResponse);
     }
 
-    @RequestMapping("/posts/exist/username")
-    ResponseWrapper existUsername(@RequestBody RegisterRequest registerRequest){
-        int exist = registerService.existUsername(registerRequest.getUsername());
+    @GetMapping("/posts/exist/username")
+    ResponseWrapper existUsername(@RequestParam("username") String name){
+        int exist = registerService.existUsername(name);
         return new ResponseWrapper(OK,exist);
     }
 }

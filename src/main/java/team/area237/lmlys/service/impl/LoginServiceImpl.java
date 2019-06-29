@@ -37,6 +37,7 @@ public class LoginServiceImpl implements LoginService {
             loginResponse.setStatus(2);
         }else if(user.getPassword().equals(password)){
             loginResponse.setStatus(0);
+            loginResponse.setUsername(user.getUserName());
         }else{
             loginResponse.setStatus(1);
         }
