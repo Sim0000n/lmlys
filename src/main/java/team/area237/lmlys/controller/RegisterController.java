@@ -16,7 +16,7 @@ public class RegisterController {
     @Autowired
     RegisterService registerService;
 
-    @PostMapping("/posts/register")
+    @PostMapping("/register")
     ResponseWrapper register(@RequestBody RegisterRequest registerRequest, HttpSession session) {
         RegisterResponse registerResponse;
         registerResponse = registerService.register(registerRequest);
@@ -25,7 +25,7 @@ public class RegisterController {
         return new ResponseWrapper(OK, registerResponse);
     }
 
-    @GetMapping("/posts/exist/username")
+    @GetMapping("/exist/username")
     ResponseWrapper existUsername(@RequestParam("username") String name){
         int exist = registerService.existUsername(name);
         return new ResponseWrapper(OK,exist);

@@ -20,7 +20,7 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @PostMapping("/posts/login")
+    @PostMapping("/login")
     public ResponseWrapper login(@RequestBody LoginRequest loginRequest, HttpSession session) {
         System.out.println("login controller");
         String em = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
@@ -41,7 +41,7 @@ public class LoginController {
         return new ResponseWrapper(OK, "登录成功", loginResponse);
     }
 
-    @GetMapping("/posts/username")
+    @GetMapping("/username")
     public ResponseWrapper isLogin(HttpSession session) {
         Object username = session.getAttribute("username");
         LoginResponse loginResponse = new LoginResponse();
