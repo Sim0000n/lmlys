@@ -41,7 +41,7 @@ public class LoginController {
         return new ResponseWrapper(OK, "登录成功", loginResponse);
     }
 
-    @RequestMapping("/posts/username")
+    @GetMapping("/posts/username")
     public ResponseWrapper isLogin(HttpSession session) {
         Object username = session.getAttribute("username");
         LoginResponse loginResponse = new LoginResponse();

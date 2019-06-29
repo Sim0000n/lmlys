@@ -16,7 +16,7 @@ public class RegisterController {
     @Autowired
     RegisterService registerService;
 
-    @RequestMapping("/posts/register")
+    @PostMapping("/posts/register")
     ResponseWrapper register(@RequestBody RegisterRequest registerRequest, HttpSession session) {
         RegisterResponse registerResponse;
         registerResponse = registerService.register(registerRequest);
