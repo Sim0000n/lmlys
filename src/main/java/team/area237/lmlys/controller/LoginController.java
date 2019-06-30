@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import team.area237.lmlys.model.request.LoginRequest;
+import team.area237.lmlys.model.response.GetUsernameResponse;
 import team.area237.lmlys.model.response.LoginResponse;
 import team.area237.lmlys.model.response.LogoutResponse;
 import team.area237.lmlys.service.LoginService;
@@ -66,4 +67,10 @@ public class LoginController {
         return new ResponseWrapper(OK, logoutResponse);
     }
 
+    @GetMapping("/api/username")
+    public ResponseWrapper isLoginGetUsername(HttpSession session) {
+        GetUsernameResponse getUsernameResponse = new GetUsernameResponse();
+        getUsernameResponse.setUsername((String)session.getAttribute("username"));
+        return new ResponseWrapper(OK, getUsernameResponse);
+    }
 }
