@@ -23,6 +23,10 @@ public class RegisterServiceImpl implements RegisterService {
             registerResponse.setStatus(1);
             return registerResponse;
         }
+        if(0 == existUsername(registerRequest.getUsername()).getStatus()){
+            registerResponse.setStatus(1);
+            return registerResponse;
+        };
         String password = "000000";
         try{
             password = Aes.encryptAes(registerRequest.getPassword());
