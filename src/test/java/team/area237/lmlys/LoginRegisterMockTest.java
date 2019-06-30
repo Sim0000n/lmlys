@@ -55,7 +55,7 @@ public class LoginRegisterMockTest {
         Map<String, String> map = new HashMap<>();
         map.put("password", "123456");
         map.put("username", "testName");
-        mockMvc.perform(post("/login")
+        mockMvc.perform(post("/api/login")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("utf-8")
@@ -67,7 +67,7 @@ public class LoginRegisterMockTest {
 
     @Test
     public void registerTest() throws Exception {
-        mockMvc.perform(get("/exist/username")
+        mockMvc.perform(get("/api/exist/username")
         .param("username", "testName")
         .accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
         .andDo(print());

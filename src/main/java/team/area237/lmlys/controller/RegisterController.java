@@ -3,6 +3,7 @@ package team.area237.lmlys.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import team.area237.lmlys.model.request.RegisterRequest;
+import team.area237.lmlys.model.response.ExistUsernameResponse;
 import team.area237.lmlys.model.response.RegisterResponse;
 import team.area237.lmlys.service.RegisterService;
 import team.area237.lmlys.utils.ResponseWrapper;
@@ -16,7 +17,7 @@ public class RegisterController {
     @Autowired
     RegisterService registerService;
 
-    @PostMapping("/register")
+    @PostMapping("/api/register")
     ResponseWrapper register(@RequestBody RegisterRequest registerRequest, HttpSession session) {
         RegisterResponse registerResponse;
         registerResponse = registerService.register(registerRequest);
@@ -25,9 +26,10 @@ public class RegisterController {
         return new ResponseWrapper(OK, registerResponse);
     }
 
-    @GetMapping("/exist/username")
+    @GetMapping("/api/exist/username")
     ResponseWrapper existUsername(@RequestParam("username") String name){
-        int exist = registerService.existUsername(name);
-        return new ResponseWrapper(OK,exist);
+        ExistUsernameResponse existUsernameResponse = registerService.existUsername(name);
+        return new ResponseWrapper(OK, existUsernameResponse);
     }
+
 }

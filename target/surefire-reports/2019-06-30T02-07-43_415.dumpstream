@@ -1,0 +1,15 @@
+# Created at 2019-06-30T02:07:48.927
+WARNING: An illegal reflective access operation has occurred
+
+# Created at 2019-06-30T02:07:48.930
+WARNING: Illegal reflective access by org.apache.ibatis.reflection.Reflector (file:/C:/Users/mende/.m2/repository/org/mybatis/mybatis/3.4.6/mybatis-3.4.6.jar) to method java.lang.String.value()
+
+# Created at 2019-06-30T02:07:48.933
+WARNING: Please consider reporting this to the maintainers of org.apache.ibatis.reflection.Reflector
+
+# Created at 2019-06-30T02:07:48.936
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+
+# Created at 2019-06-30T02:07:48.939
+WARNING: All illegal access operations will be denied in a future release
+

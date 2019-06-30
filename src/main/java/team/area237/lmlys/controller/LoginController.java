@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import team.area237.lmlys.model.request.LoginRequest;
 import team.area237.lmlys.model.response.LoginResponse;
+import team.area237.lmlys.model.response.LogoutResponse;
 import team.area237.lmlys.service.LoginService;
 import team.area237.lmlys.utils.ResponseWrapper;
 
@@ -20,7 +21,7 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @PostMapping("/login")
+    @PostMapping("/api/login")
     public ResponseWrapper login(@RequestBody LoginRequest loginRequest, HttpSession session) {
         System.out.println("login controller");
         String em = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
@@ -38,10 +39,10 @@ public class LoginController {
         }
         if(loginResponse.getStatus() == 0)
             session.setAttribute("username", loginResponse.getUsername());
-        return new ResponseWrapper(OK, "登录成功", loginResponse);
+        return new ResponseWrapper(OK, "success", loginResponse);
     }
 
-    @GetMapping("/username")
+    @GetMapping("/api/login")
     public ResponseWrapper isLogin(HttpSession session) {
         Object username = session.getAttribute("username");
         LoginResponse loginResponse = new LoginResponse();
@@ -52,6 +53,17 @@ public class LoginController {
             loginResponse.setStatus(1);
         }
         return new ResponseWrapper(OK, loginResponse);
+    }
+
+    @GetMapping("/api/logout")
+    public ResponseWrapper logout(HttpSession session) {
+        LogoutResponse logoutResponse = new LogoutResponse();
+        session.removeAttribute("username");
+        if(session.getAttribute("username") == null)
+            logoutResponse.setStatus(0);
+        else
+            logoutResponse.setStatus(1);
+        return new ResponseWrapper(OK, logoutResponse);
     }
 
 }
