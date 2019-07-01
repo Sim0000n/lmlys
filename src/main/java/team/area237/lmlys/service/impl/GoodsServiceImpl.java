@@ -6,7 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 import team.area237.lmlys.dao.GoodsDao;
 import team.area237.lmlys.model.response.*;
 import team.area237.lmlys.service.GoodsService;
+import team.area237.lmlys.utils.GoodsCategory;
+import team.area237.lmlys.utils.ImgUrls;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 @Transactional
@@ -17,7 +20,12 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public CategoriesResponse getAllCategories(){
         CategoriesResponse categoriesResponse = new CategoriesResponse();
-        List<String> list = goodsDao.categorySelect();
+        //List<String> list = goodsDao.categorySelect();
+        //String array[]={"图书音像","运动健康","个护美妆","电子产品","酒水饮料"};
+        List<String> list=new ArrayList<>();
+        for(GoodsCategory e:GoodsCategory.values()){
+            list.add(e.getCategory());
+        }
         String[] array=list.toArray(new String[list.size()]);
         categoriesResponse.setCategories(array);
         return categoriesResponse;
@@ -63,4 +71,15 @@ public class GoodsServiceImpl implements GoodsService {
         popularWordResponse.setWords(array);
         return popularWordResponse;
     }
+    @Override
+    //根据商品id，返回商品详情
+    public GoodsDetailResponse getGoodsDetail(int id){
+        GoodsDetailResponse goodsDetailResponse = new GoodsDetailResponse();
+        ImgUrls imgUrls=goodsDao.selectUrlsById(id);
+        goodsDetailResponse.setImgs(imgUrls.getUrls());
+        String s=goodsDao.selectDescriptionById(id);
+        goodsDetailResponse.setContent(s);
+        return goodsDetailResponse;
+    }
+
 }

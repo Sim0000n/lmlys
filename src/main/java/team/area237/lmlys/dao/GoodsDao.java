@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 import team.area237.lmlys.model.response.GoodsGeneralResponse;
+import team.area237.lmlys.utils.ImgUrls;
 
 import java.util.List;
 @Mapper
@@ -20,8 +21,11 @@ public interface GoodsDao {
     List<Integer> idsSelectByCount(@Param("amount")int amount);
     //返回分类的商品ID
     List<Integer> idsSelectByCategory(@Param("category")String category);
-
-
     //返回最热搜索词
     List<String> wordSelectOrderByFrequency(@Param("amount")int amount);
+
+    //根据商品id，返回商品所有图片
+    ImgUrls selectUrlsById(@Param("id")int id);
+    //根据商品id，返回商品详情
+    String selectDescriptionById(@Param("id")int id);
 }
