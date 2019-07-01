@@ -47,4 +47,8 @@ public class GoodsController {
     ResponseWrapper getPopularWord(@RequestParam("count")int count) {
         return new ResponseWrapper(OK, goodsService.getPopularWords(count));
     }
+    @GetMapping("/api/goods/other")
+    ResponseWrapper getGoodsDetail(@RequestParam("id")int id) {
+        return new ResponseWrapper(OK, goodsService.getGoodsDetail(id));
+    }
 }

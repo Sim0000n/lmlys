@@ -23,4 +23,7 @@ public interface GoodsService {
 
     //返回count数量上限的热门搜索关键词
     public PopularWordResponse getPopularWords(int count);
+
+    //根据商品id，返回商品详情
+    public GoodsDetailResponse getGoodsDetail(int id);
 }
