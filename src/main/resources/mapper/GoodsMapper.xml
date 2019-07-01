@@ -16,7 +16,7 @@
                  select goods_id from goods where goods_name like "%"#{key_word}"%"
              </select>
              <select id="idsSelectByCount" resultType="Integer">
-                 select goods_id from goods order by solded_num limit #{amount}
+                 select goods_id from goods order by solded_num desc limit #{amount}
              </select>
              <select id="idsSelectByCategory" resultType="Integer">
                  select goods_id from goods where category = #{category}
