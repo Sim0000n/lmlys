@@ -13,7 +13,7 @@
                  select goods_name,price,pic_url1 from goods where goods_id = #{id}
              </select>
              <select id="idsSelectByWord" resultType="Integer">
-                 select goods_id from goods where goods_name = #{key_word}
+                 select goods_id from goods where goods_name like "%"#{key_word}"%"
              </select>
              <select id="idsSelectByCount" resultType="Integer">
                  select goods_id from goods order by solded_num limit #{amount}
