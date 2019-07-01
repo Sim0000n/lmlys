@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+         <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+         <mapper namespace="team.area237.lmlys.dao.GoodsDao">
+             <select id="categorySelect" resultType="String" >
+                 select category from goods
+             </select>
+         <resultMap id="GoodsGeneralResponse" type="team.area237.lmlys.model.response.GoodsGeneralResponse">
+           <result column="goods_name" jdbcType="VARCHAR" property="title"/>
+           <result column="price" jdbcType="VARCHAR" property="price"/>
+             <result column="pic_url1" jdbcType="VARCHAR" property="img"/>
+         </resultMap>
+             <select id="selectById" resultMap="GoodsGeneralResponse">
+                 select goods_name,price,pic_url1 from goods where goods_id = #{id}
+             </select>
+             <select id="idsSelectByWord" resultType="Integer">
+                 select goods_id from goods where goods_name = #{key_word}
+             </select>
+             <select id="idsSelectByCount" resultType="Integer">
+                 select goods_id from goods order by solded_num limit #{amount}
+             </select>
+             <select id="idsSelectByCategory" resultType="Integer">
+                 select goods_id from goods where category = #{category}
+             </select>
+             <select id="wordSelectOrderByFrequency" resultType="String">
+                 select goods_id from goods order by frequent limit #{amount}
+             </select>
+         </mapper>

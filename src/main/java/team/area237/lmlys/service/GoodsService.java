@@ -1,8 +1,9 @@
 package team.area237.lmlys.service;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import team.area237.lmlys.model.response.*;
-
+@Service
 @Component
 public interface GoodsService {
     //返回所有类别的String数组

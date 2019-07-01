@@ -1,12 +1,15 @@
 package team.area237.lmlys.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import team.area237.lmlys.dao.GoodsDao;
 import team.area237.lmlys.model.response.*;
 import team.area237.lmlys.service.GoodsService;
 
 import java.util.List;
-
+@Service
+@Transactional
 public class GoodsServiceImpl implements GoodsService {
     @Autowired
     private GoodsDao goodsDao;
@@ -19,7 +22,7 @@ public class GoodsServiceImpl implements GoodsService {
         categoriesResponse.setCategories(array);
         return categoriesResponse;
     }
-
+    @Override
     //根据word搜索商品，返回商品id的number数组
     public SearchGoodsResponse searchGoods(String word){
         SearchGoodsResponse searchGoodsResponse = new SearchGoodsResponse();
@@ -28,7 +31,7 @@ public class GoodsServiceImpl implements GoodsService {
         searchGoodsResponse.setGoodsID(IDs);
         return searchGoodsResponse;
     }
-
+    @Override
     //count为返回热门商品的数量上限，返回热门商品id的数组
     public SearchGoodsResponse getPopularGoods(int count){
         SearchGoodsResponse searchGoodsResponse = new SearchGoodsResponse();
@@ -37,12 +40,12 @@ public class GoodsServiceImpl implements GoodsService {
         searchGoodsResponse.setGoodsID(IDs);
         return searchGoodsResponse;
     }
+    @Override
     //根据商品id，返回商品概要信息
     public GoodsGeneralResponse getGoodsGeneral(int id){
         return goodsDao.selectById(id);
     }
-
-
+    @Override
     //根据分类，返回商品id数组
     public CategoryGoodsResponse getGoodsByCategory(String category){
         CategoryGoodsResponse categoryGoodsResponse = new CategoryGoodsResponse();
@@ -51,7 +54,7 @@ public class GoodsServiceImpl implements GoodsService {
         categoryGoodsResponse.setId(IDs);
         return categoryGoodsResponse;
     }
-
+    @Override
     //返回count数量上限的热门搜索关键词
     public PopularWordResponse getPopularWords(int count){
         PopularWordResponse popularWordResponse = new PopularWordResponse();

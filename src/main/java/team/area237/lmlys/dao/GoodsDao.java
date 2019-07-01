@@ -1,11 +1,14 @@
 package team.area237.lmlys.dao;
 
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 import team.area237.lmlys.model.response.GoodsGeneralResponse;
 
 import java.util.List;
-
+@Mapper
+@Component
 public interface GoodsDao {
     //返回所有商品类型
     List<String> categorySelect();
