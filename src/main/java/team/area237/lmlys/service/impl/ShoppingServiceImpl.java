@@ -42,7 +42,8 @@ public class ShoppingServiceImpl implements ShoppingService {
     @Override
     public UploadCartResponse uploadShoppingCart(String username, UpdateCartResquest updateCartResquest) {
         UploadCartResponse uploadCartResponse=new UploadCartResponse();
-        int r=cartDao.replaceByUsername(username,updateCartResquest.getCarts());
+        cartDao.deleteByUsername(username);
+        int r=cartDao.insertAllByUsername(username,updateCartResquest.getCarts());
         if(r>0){
             uploadCartResponse.setStatus(0);
         }else {

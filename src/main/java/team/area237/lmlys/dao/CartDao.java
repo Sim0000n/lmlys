@@ -14,8 +14,10 @@ public interface CartDao {
     int amountSelectByUsername(@Param("username")String username);
     //获取购物车内商品的信息Cart:String goodsId,int count
     List<Cart> InfoSelectByUsername(@Param("username")String username);
+    //删除当前用户的购物车信息
+    int deleteByUsername(@Param("username")String username);
     //上传当前用户的购物车信息
-    int replaceByUsername(@Param("username")String username,@Param("carts") Cart[] carts);
+    int insertAllByUsername(@Param("username")String username,@Param("carts") Cart[] carts);
     //添加新商品
     int insertByUsername(@Param("username")String username,@Param("goods_id")int id,@Param("count")int count);
 }
