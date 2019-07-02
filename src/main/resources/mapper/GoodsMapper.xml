@@ -4,24 +4,43 @@
     <select id="categorySelect" resultType="String">
                 select category from goods
              </select>
+
     <resultMap id="GoodsGeneralResponse" type="team.area237.lmlys.model.response.GoodsGeneralResponse">
         <result column="goods_name" jdbcType="VARCHAR" property="title"/>
         <result column="price" jdbcType="VARCHAR" property="price"/>
         <result column="pic_url1" jdbcType="VARCHAR" property="img"/>
     </resultMap>
+
     <select id="selectById" resultMap="GoodsGeneralResponse">
                  select goods_name,price,pic_url1 from goods where goods_id = #{id}
              </select>
+
     <select id="idsSelectByWord" resultType="Integer">
                  select goods_id from goods where goods_name like "%"#{key_word}"%"
              </select>
+
     <select id="idsSelectByCount" resultType="Integer">
                  select goods_id from goods order by solded_num desc limit #{amount}
              </select>
+
     <select id="idsSelectByCategory" resultType="Integer">
                  select goods_id from goods where category = #{category}
              </select>
+
     <select id="wordSelectOrderByFrequency" resultType="String">
                  select goods_id from goods order by frequent limit #{amount}
+             </select>
+
+    <resultMap id="ImgUrls" type="team.area237.lmlys.model.response.GoodsDetailResponse">
+               <result column="pic_url2" jdbcType="VARCHAR" property="img1"/>
+               <result column="pic_url3" jdbcType="VARCHAR" property="img2"/>
+               <result column="pic_url4" jdbcType="VARCHAR" property="img3"/>
+               <result column="pic_url5" jdbcType="VARCHAR" property="img4"/>
+    <select id="selectUrlsById" resultMap="ImgUrls">
+                select pic_url2,pic_url3,pic_url4,pic_ur5 from goods where goods_id = #{id}
+             </select>
+
+    <select id="selectDescriptionById" resultType="String">
+                 select description from goods where goods_id=#{id}
              </select>
 </mapper>
