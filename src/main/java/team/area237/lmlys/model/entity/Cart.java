@@ -4,13 +4,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Cart {
-    private ArrayList<Good> goods;
+    private String goodsId;
+    private int count;
 
-    public ArrayList<Good> getGoods() {
-        return goods;
+    public String getGoodsId() {
+        return goodsId;
     }
 
-    public void setGoods(ArrayList<Good> goods) {
-        this.goods = goods;
+    public void setGoodsId(String goodsId) {
+        this.goodsId = goodsId;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }
