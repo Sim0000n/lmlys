@@ -45,5 +45,11 @@ public class GoodsServiceTest extends LmlysApplicationTests {
         for (int i=0;i<b.length;i++){
             System.out.println(b[i]);
         }
+        //根据商品id，返回商品详情
+        GoodsDetailResponse goodsDetailResponse=goodsService.getGoodsDetail(1);
+        System.out.println(goodsDetailResponse.getContent());
+        for (int i=0;i<goodsDetailResponse.getImgs().length;i++){
+            System.out.println(goodsDetailResponse.getImgs()[i]);
+        }
     }
 }
