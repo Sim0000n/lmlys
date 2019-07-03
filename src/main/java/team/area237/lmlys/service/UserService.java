@@ -1,11 +1,12 @@
 package team.area237.lmlys.service;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import team.area237.lmlys.model.request.UploadUserAddressRequest;
 import team.area237.lmlys.model.request.UploadUserDataResquest;
 import team.area237.lmlys.model.response.GetUserAddressResponse;
 import team.area237.lmlys.model.response.UserDataResponse;
-
+@Service
 @Component
 public interface UserService {
     //获得用户的绑定数据
