@@ -6,5 +6,53 @@
     </select>
     <insert id="addUser">
     INSERT INTO user(username,password) VALUES(#{username},#{password})
-   </insert>
+    </insert>
+
+
+
+    <resultMap id="UserDataResponse" type="team.area237.lmlys.model.response.UserDataResponse">
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="tel" jdbcType="VARCHAR" property="phone"/>
+    </resultMap>
+
+    <select id="dataSelectByUsername" resultMap="UserDataResponse">
+    select email,tel from user where username = #{username}
+    </select>
+
+    <insert id="insertPhoneByUsername">
+    insert into user (tel) values (#{phone}) where username=#{username}
+    </insert>
+
+    <insert id="insertEmailByUsername">
+    insert into user (email) values (#{email}) where username=#{username}
+    </insert>
+
+    <insert id="insertBothByUsername">
+    insert into user (tel,email) values (#{phone},#{email}) where username=#{username}
+    </insert>
+
+    <resultMap id="UserAdrress" type="team.area237.lmlys.model.response.GetUserAddressResponse">
+        <result column="province" jdbcType="VARCHAR" property="province"/>
+        <result column="city" jdbcType="VARCHAR" property="city"/>
+        <result column="detail_address" jdbcType="VARCHAR" property="home"/>
+    </resultMap>
+
+    <select id="selectAddressByUsername" resultMap="UserAdrress">
+    select province,city,detail_address from user where username = #{username}
+    </select>
+
+    <insert id="insertAddressByUsername">
+    insert into user (province,city,detail_address) values (adress) where username=#{username}
+    </insert>
+
+    <select id="selectProvince">
+    select province_name from province
+    </select>
+
+    <select id="citySelectByProvince">
+    SELECT city_name FROM city INNER JOIN province ON city.province_codes=province.province_codes WhERE province.province_name=#{province}
+    </select>
+
+
+
 </mapper>
