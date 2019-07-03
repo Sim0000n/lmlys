@@ -8,6 +8,8 @@ import team.area237.lmlys.model.request.UploadUserAddressRequest;
 import team.area237.lmlys.model.response.GetUserAddressResponse;
 import team.area237.lmlys.model.response.UserDataResponse;
 
+import java.util.List;
+
 @Mapper
 @Component
 public interface RegisterDao {
@@ -18,14 +20,20 @@ public interface RegisterDao {
     UserDataResponse dataSelectByUsername(@Param("username")String username);
 
     //上传用户phone
-    int insertPhoneByUsername(@Param("username")String username);
+    int insertPhoneByUsername(@Param("username")String username,@Param("phone")String phone);
     //上传用户email
-    int insertEmailByUsername(@Param("username")String username);
+    int insertEmailByUsername(@Param("username")String username,@Param("email")String email);
     //同时插入phone和email
-    int insertBothByUsername(@Param("username")String username);
+    int insertBothByUsername(@Param("username")String username,@Param("phone")String phone,@Param("email")String email);
     //获取用户地址信息
     GetUserAddressResponse selectAddressByUsername(@Param("username")String username);
 
     //上传用户地址信息
     int insertAddressByUsername(@Param("usersname")String username, @Param("address")UploadUserAddressRequest uploadUserAddressRequest);
-}
+
+
+    //只返回省名
+    List<String> selectProvince();
+    //返回市名
+    List<String> citySelectByProvince(@Param("province")String province);
+    }

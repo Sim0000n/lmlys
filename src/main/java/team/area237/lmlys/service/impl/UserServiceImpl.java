@@ -4,16 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import team.area237.lmlys.dao.RegisterDao;
+import team.area237.lmlys.model.entity.Province;
 import team.area237.lmlys.model.request.UploadUserAddressRequest;
 import team.area237.lmlys.model.request.UploadUserDataResquest;
+import team.area237.lmlys.model.response.GetOrderResponse;
 import team.area237.lmlys.model.response.GetUserAddressResponse;
+import team.area237.lmlys.model.response.ProvinceCityResponse;
 import team.area237.lmlys.model.response.UserDataResponse;
 import team.area237.lmlys.service.UserService;
+
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
     @Autowired
     private RegisterDao registerDao;
+
     @Override
     public UserDataResponse getUserData(String username) {
         UserDataResponse userDataResponse=registerDao.dataSelectByUsername(username);
@@ -30,13 +38,13 @@ public class UserServiceImpl implements UserService {
         if(email==null&&phone==null){
             return 1;
         }else if(email==null){
-            int re=registerDao.insertPhoneByUsername(username);
+            int re=registerDao.insertPhoneByUsername(username,phone);
             if(re>0)return 0;
         }else if(phone==null){
-            int re=registerDao.insertEmailByUsername(username);
+            int re=registerDao.insertEmailByUsername(username,email);
             if(re>0)return 0;
         }else {
-            int re=registerDao.insertBothByUsername(username);
+            int re=registerDao.insertBothByUsername(username,phone,email);
             if(re>0)return 0;
         }
         return 1;
@@ -63,5 +71,36 @@ public class UserServiceImpl implements UserService {
         int re=registerDao.insertAddressByUsername(username,uploadUserAddressRequest);
         if(re>0)return 0;
         return 1;
+    }
+
+    @Override
+    public ProvinceCityResponse getProvinceAndCity(){
+        ProvinceCityResponse provinceCityResponse=new ProvinceCityResponse();
+        List<Province> provinces=new ArrayList<>();
+        List<String> list=registerDao.selectProvince();
+        int l=list.size();
+        for(int i=0;i<l;i++){
+            Province province=new Province();
+            province.setProvinceName(list.get(i));
+            List<String> cities=registerDao.citySelectByProvince(list.get(i));
+            province.setCity(cities.toArray(new String[cities.size()]));
+            provinces.add(province);
+        }
+        Province[] provinces1=provinces.toArray(new Province[provinces.size()]);
+        provinceCityResponse.setProvinces(provinces1);
+        return provinceCityResponse;
+    }
+    @Override
+    public int finishBill(String username){
+        return 0;
+    }
+    //返回用户的所有订单id,按修改时间排序，新的在前，旧的在后
+    public int[] getAllOrders(String username){
+        return null;
+    }
+
+    //返回订单详细信息
+    public GetOrderResponse getOrder(int id){
+        return null;
     }
 }
