@@ -44,7 +44,7 @@ public class ShoppingController {
             return new ResponseWrapper(ResponseStatus.OK, shoppingService.uploadShoppingCart(username, updateCartResquest).getStatus());
     }
 
-    @GetMapping("/api/shoppingCart/new")
+    @PostMapping("/api/shoppingCart/new")
     ResponseWrapper addNewGoodsToCart(@RequestBody NewGoodsToCartRequest newGoodsToCartRequest, HttpSession session) {
         String username = (String)session.getAttribute("username");
         if(username == null)

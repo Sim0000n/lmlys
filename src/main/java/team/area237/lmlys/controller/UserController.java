@@ -1,10 +1,7 @@
 package team.area237.lmlys.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import team.area237.lmlys.model.request.UploadUserAddressRequest;
 import team.area237.lmlys.model.request.UploadUserDataResquest;
@@ -55,5 +52,37 @@ public class UserController {
             return new ResponseWrapper(ResponseStatus.FAIL_4001, "未登录");
         else
             return new ResponseWrapper(ResponseStatus.OK, userService.UploadUserAddress(uploadUserAddressRequest, username));
+    }
+
+    @GetMapping("/api/city")
+    ResponseWrapper getCityAndProvince() {
+        return new ResponseWrapper(ResponseStatus.OK, userService.getProvinceAndCity());
+    }
+
+    @GetMapping("/api/finishBill")
+    ResponseWrapper finishBill(HttpSession session) {
+        String username = (String)session.getAttribute("username");
+        if(username == null)
+            return new ResponseWrapper(ResponseStatus.FAIL_4001, "未登录");
+        else
+            return new ResponseWrapper(ResponseStatus.OK, userService.finishBill(username));
+    }
+
+    @GetMapping("/api/user/orders")
+    ResponseWrapper getAllOrders(HttpSession session) {
+        String username = (String)session.getAttribute("username");
+        if(username == null)
+            return new ResponseWrapper(ResponseStatus.FAIL_4001, "未登录");
+        else
+            return new ResponseWrapper(ResponseStatus.OK, userService.getAllOrders(username));
+    }
+
+    @GetMapping("/api/user/order")
+    ResponseWrapper getOrder(@RequestParam("id")int id, HttpSession session) {
+        String username = (String)session.getAttribute("username");
+        if(username == null)
+            return new ResponseWrapper(ResponseStatus.FAIL_4001, "未登录");
+        else
+            return new ResponseWrapper(ResponseStatus.OK, userService.getOrder(id));
     }
 }
