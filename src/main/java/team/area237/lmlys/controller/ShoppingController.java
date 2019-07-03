@@ -23,7 +23,7 @@ public class ShoppingController {
         if(username == null)
             return new ResponseWrapper(ResponseStatus.FAIL_4001, "未登录");
         else
-            return new ResponseWrapper(ResponseStatus.OK, shoppingService.getGoodsNumberInCart(username));
+            return new ResponseWrapper(ResponseStatus.OK, shoppingService.getGoodsNumberInCart(username).getNumber());
     }
 
     @GetMapping("/api/shoppingCart")
@@ -41,7 +41,7 @@ public class ShoppingController {
         if(username == null)
             return new ResponseWrapper(ResponseStatus.FAIL_4001, "未登录");
         else
-            return new ResponseWrapper(ResponseStatus.OK, shoppingService.uploadShoppingCart(username, updateCartResquest));
+            return new ResponseWrapper(ResponseStatus.OK, shoppingService.uploadShoppingCart(username, updateCartResquest).getStatus());
     }
 
     @GetMapping("/api/shoppingCart/new")
@@ -50,6 +50,6 @@ public class ShoppingController {
         if(username == null)
             return new ResponseWrapper(ResponseStatus.FAIL_4001, "未登录");
         else
-            return new ResponseWrapper(ResponseStatus.OK,shoppingService.addNewGoodsToCart(username, newGoodsToCartRequest));
+            return new ResponseWrapper(ResponseStatus.OK,shoppingService.addNewGoodsToCart(username, newGoodsToCartRequest).getStatus());
     }
 }
