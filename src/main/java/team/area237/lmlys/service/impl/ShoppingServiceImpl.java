@@ -23,7 +23,13 @@ public class ShoppingServiceImpl implements ShoppingService {
     @Override
     public ShoppingCartCountResponse getGoodsNumberInCart(String username) {
         ShoppingCartCountResponse shoppingCartCountResponse = new ShoppingCartCountResponse();
-        int num =cartDao.amountSelectByUsername(username);
+        Integer n =cartDao.amountSelectByUsername(username);
+        int num;
+        if(n==null){
+            num=0;
+        }else {
+            num=n;
+        }
         shoppingCartCountResponse.setNumber(num);
         return shoppingCartCountResponse;
     }
@@ -33,7 +39,7 @@ public class ShoppingServiceImpl implements ShoppingService {
     public ShoppingCartResponse getShoppingCart(String username) {
         ShoppingCartResponse shoppingCartResponse=new ShoppingCartResponse();
         List<Cart> list=cartDao.InfoSelectByUsername(username);
-        Cart[] carts =(Cart[])list.toArray();
+        Cart[] carts =list.toArray(new Cart[list.size()]);
         shoppingCartResponse.setCarts(carts);
         return shoppingCartResponse;
     }
@@ -43,7 +49,16 @@ public class ShoppingServiceImpl implements ShoppingService {
     public UploadCartResponse uploadShoppingCart(String username, UpdateCartResquest updateCartResquest) {
         UploadCartResponse uploadCartResponse=new UploadCartResponse();
         cartDao.deleteByUsername(username);
-        int r=cartDao.insertAllByUsername(username,updateCartResquest.getCarts());
+        Cart[] carts=updateCartResquest.getCarts();
+        for (int i = 0; i < carts.length - 1; i++) {
+            for (int j = carts.length - 1; j > i; j--) {
+                if (carts[i].getGoodsId()==carts[j].getGoodsId()) {
+                    uploadCartResponse.setStatus(1);
+                    return uploadCartResponse;
+                }
+            }
+        }
+        int r=cartDao.insertAllByUsername(username,carts);
         if(r>0){
             uploadCartResponse.setStatus(0);
         }else {

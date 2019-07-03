@@ -1,7 +1,7 @@
 package team.area237.lmlys.model.entity;
 
-        import java.util.ArrayList;
-        import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Cart {
     private int goodsId;
