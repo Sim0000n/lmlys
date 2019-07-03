@@ -11,7 +11,7 @@
         <result column="amount" jdbcType="VARCHAR" property="count"/>
     </resultMap>
     <select id="InfoSelectByUsername" resultMap="Cartdes">
-    select goods_id,amount from order where username = #{username};
+    select goods_id,amount from orders where username = #{username};
     </select>
     <delete id="deleteByUsername">
     delete from v_cart where username=#{username};
