@@ -51,6 +51,5 @@ public class ShoppingController {
             return new ResponseWrapper(ResponseStatus.FAIL_4001, "未登录");
         else
             return new ResponseWrapper(ResponseStatus.OK,shoppingService.addNewGoodsToCart(username, newGoodsToCartRequest));
-
     }
 }
