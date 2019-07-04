@@ -18,5 +18,6 @@ public class RegisterServiceTest extends LmlysApplicationTests {
         System.out.println(i);
         //如果注册成功，需要将用户写入数据库
         registerService.register(registerRequest);
+
     }
 }
