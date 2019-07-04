@@ -26,4 +26,7 @@ public interface GoodsService {
 
     //根据商品id，返回商品详情
     public GoodsDetailResponse getGoodsDetail(int id);
+
+    //返回商品库存
+    public int getStorageCount(int id);
 }

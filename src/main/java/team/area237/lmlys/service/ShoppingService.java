@@ -21,4 +21,5 @@ public interface ShoppingService {
 
     //将新商品加入购物车
     UploadCartResponse addNewGoodsToCart(String username, NewGoodsToCartRequest newGoodsToCartRequest);
+
 }

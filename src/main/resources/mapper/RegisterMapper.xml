@@ -20,15 +20,15 @@
     </select>
 
     <insert id="insertPhoneByUsername">
-    insert into user (tel) values (#{phone}) where username=#{username}
+    update user set tel=#{phone} where username=#{username}
     </insert>
 
     <insert id="insertEmailByUsername">
-    insert into user (email) values (#{email}) where username=#{username}
+    update user set email=#{email} where username=#{username}
     </insert>
 
     <insert id="insertBothByUsername">
-    insert into user (tel,email) values (#{phone},#{email}) where username=#{username}
+    update user set tel=#{phone},email=#{email} where username=#{username}
     </insert>
 
     <resultMap id="UserAddress" type="team.area237.lmlys.model.response.GetUserAddressResponse">

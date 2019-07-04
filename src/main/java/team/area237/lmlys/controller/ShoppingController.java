@@ -52,4 +52,6 @@ public class ShoppingController {
         else
             return new ResponseWrapper(ResponseStatus.OK,shoppingService.addNewGoodsToCart(username, newGoodsToCartRequest).getStatus());
     }
+
+
 }
