@@ -46,18 +46,18 @@ public class ShoppingServiceImpl implements ShoppingService {
 
     //上传当前用户的购物车信息
     @Override
-    public UploadCartResponse uploadShoppingCart(String username, UpdateCartRequest[] updateCartRequests) {
+    public UploadCartResponse uploadShoppingCart(String username, UpdateCartRequest[] updateCartResquests) {
         UploadCartResponse uploadCartResponse=new UploadCartResponse();
         cartDao.deleteByUsername(username);
-        for (int i = 0; i < updateCartRequests.length - 1; i++) {
-            for (int j = updateCartRequests.length - 1; j > i; j--) {
-                if (updateCartRequests[i].getId()== updateCartRequests[j].getId()) {
+        for (int i = 0; i < updateCartResquests.length - 1; i++) {
+            for (int j = updateCartResquests.length - 1; j > i; j--) {
+                if (updateCartResquests[i].getId()==updateCartResquests[j].getId()) {
                     uploadCartResponse.setStatus(1);
                     return uploadCartResponse;
                 }
             }
         }
-        int r=cartDao.insertAllByUsername(username, updateCartRequests);
+        int r=cartDao.insertAllByUsername(username, updateCartResquests);
         if(r>0){
             uploadCartResponse.setStatus(0);
         }else {

@@ -75,7 +75,7 @@
     </select>
 
     <resultMap id="stockbyum" type="team.area237.lmlys.model.entity.Cart">
-        <result column="goods_id" jdbcType="INTEGER" property="goodsID"/>
+        <result column="goods_id" jdbcType="INTEGER" property="goodsId"/>
         <result column="stock" jdbcType="INTEGER" property="stock"/>
     </resultMap>
     <select id="selectStockByUsername" resultMap="stockbyum">

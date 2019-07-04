@@ -25,7 +25,7 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public int updateOrderStatus(UpdateOrderStatusRequest updateOrderStatusRequest) {
-        int i = Integer.parseInt(updateOrderStatusRequest.getStatus());
+        String i = updateOrderStatusRequest.getStatus();
         int re=managerDao.updateStatusById(updateOrderStatusRequest.getId(),i);
         if(re>0)return 0;
         return 1;

@@ -36,12 +36,12 @@ public class ShoppingController {
     }
 
     @PostMapping("/api/shoppingCart")
-    ResponseWrapper uploadCarts(@RequestBody UpdateCartRequest[] updateCartRequests, HttpSession session) {
+    ResponseWrapper uploadCarts(@RequestBody UpdateCartRequest[] updateCartResquests, HttpSession session) {
         String username = (String)session.getAttribute("username");
         if(username == null)
             return new ResponseWrapper(ResponseStatus.FAIL_4001, "未登录");
         else
-            return new ResponseWrapper(ResponseStatus.OK, shoppingService.uploadShoppingCart(username, updateCartRequests).getStatus());
+            return new ResponseWrapper(ResponseStatus.OK, shoppingService.uploadShoppingCart(username, updateCartResquests).getStatus());
     }
 
     @PostMapping("/api/shoppingCart/new")

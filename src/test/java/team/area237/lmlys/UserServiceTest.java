@@ -26,8 +26,8 @@ public class UserServiceTest extends LmlysApplicationTests {
     }
     @Test
     public void uploadUserData(){
-        UploadUserDataRequest uploadUserDataRequest =new UploadUserDataRequest();
-        int i=userService.uploadUserData(uploadUserDataRequest,"testName");
+        UploadUserDataRequest uploadUserDataResquest=new UploadUserDataRequest();
+        int i=userService.uploadUserData(uploadUserDataResquest,"testName");
         Assert.assertThat(i,is(1));
     }
     @Test
@@ -62,14 +62,14 @@ public class UserServiceTest extends LmlysApplicationTests {
        FinishBillResponse finishBillResponse=userService.finishBill("testName");
        System.out.println(finishBillResponse.getResult());
     }
-//    @Test
-//    public void getOrder(){
-//        int[] Ids=userService.getAllOrders("sb");
-//        Assert.assertThat(Ids.length,greaterThan(0));
-//        System.out.println(Ids[0]);
-//        GetOrderResponse getOrderResponse=userService.getOrder(Ids[0]);
-//        System.out.println(getOrderResponse.getState());
-//        System.out.println(getOrderResponse.getGoodsTitle());
-//    }
+    @Test
+    public void getOrder(){
+        int[] Ids=userService.getAllOrders("testName");
+        Assert.assertThat(Ids.length,greaterThan(0));
+        System.out.println(Ids[0]);
+        GetOrderResponse getOrderResponse=userService.getOrder(Ids[0]);
+        System.out.println(getOrderResponse.getState());
+        System.out.println(getOrderResponse.getGoodsTitle());
+    }
     
 }

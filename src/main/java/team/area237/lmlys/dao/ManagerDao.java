@@ -13,7 +13,7 @@ public interface ManagerDao {
     //根据订单ID返回商品ID，标题，数量，订单状态，状态最后修改时间
     GetOrderResponse selectOrderById(@Param("id")int id);
     //修改某一订单的状态
-    int updateStatusById(@Param("id")int id,@Param("status")int status);
+    int updateStatusById(@Param("id")int id,@Param("status")String status);
     //返回用户权限：1管理员，0普通用户
     int selectLevelByUsername(@Param("username")String username);
 }

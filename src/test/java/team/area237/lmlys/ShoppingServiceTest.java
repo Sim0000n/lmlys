@@ -3,10 +3,14 @@ package team.area237.lmlys;
 import org.springframework.beans.factory.annotation.Autowired;
 import team.area237.lmlys.model.entity.Cart;
 import team.area237.lmlys.model.request.NewGoodsToCartRequest;
+import team.area237.lmlys.model.request.UpdateCartRequest;
 import team.area237.lmlys.model.response.ShoppingCartCountResponse;
 import team.area237.lmlys.model.response.ShoppingCartResponse;
 import team.area237.lmlys.model.response.UploadCartResponse;
 import team.area237.lmlys.service.ShoppingService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ShoppingServiceTest extends LmlysApplicationTests {
     @Autowired
@@ -25,18 +29,16 @@ public class ShoppingServiceTest extends LmlysApplicationTests {
             System.out.println(carts[i].getGoodsId());
         }
         //上传当前用户的购物车信息
-//        UpdateCartRequest updateCartResquest=new UpdateCartRequest();
-//        List<Cart> carts1=new ArrayList<>();
-//        for(int i=1;i<5;i++){
-//            Cart cart=new Cart();
-//            cart.setGoodsId(i);
-//            cart.setCount(i);
-//            carts1.add(cart);
-//        }
-//        Cart[] carts2=carts1.toArray(new Cart[carts1.size()]);
-//        updateCartResquest.setCarts(carts2);
-//        UploadCartResponse uploadCartResponse=shoppingService.uploadShoppingCart("testName",updateCartResquest);
-//        System.out.println(uploadCartResponse.getStatus());
+        List<UpdateCartRequest> updateCartRequests=new ArrayList<>();
+        for(int i=1;i<5;i++){
+            UpdateCartRequest updateCartRequest=new UpdateCartRequest();
+            updateCartRequest.setId(i);
+            updateCartRequest.setCount(i);
+            updateCartRequests.add(updateCartRequest);
+        }
+        UpdateCartRequest[] updateCartRequests1=updateCartRequests.toArray(new UpdateCartRequest[updateCartRequests.size()]);
+        UploadCartResponse uploadCartResponse=shoppingService.uploadShoppingCart("testName",updateCartRequests1);
+        System.out.println(uploadCartResponse.getStatus());
         //将新商品加入购物车
         NewGoodsToCartRequest newGoodsToCartRequest=new NewGoodsToCartRequest();
         newGoodsToCartRequest.setId(6);
