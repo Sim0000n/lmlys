@@ -6,10 +6,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import team.area237.lmlys.model.request.UploadUserAddressRequest;
 import team.area237.lmlys.model.request.UploadUserDataResquest;
-import team.area237.lmlys.model.response.GetOrderResponse;
-import team.area237.lmlys.model.response.GetUserAddressResponse;
-import team.area237.lmlys.model.response.ProvinceCityResponse;
-import team.area237.lmlys.model.response.UserDataResponse;
+import team.area237.lmlys.model.response.*;
 import team.area237.lmlys.service.UserService;
 
 import static org.hamcrest.Matchers.*;
@@ -63,9 +60,8 @@ public class UserServiceTest extends LmlysApplicationTests {
     }
     @Test
     public void finishBill(){
-       //int re= userService.finishBill("testName");
-       //Assert.assertThat(re,is(1));
-       return;
+       FinishBillResponse finishBillResponse=userService.finishBill("testName");
+       System.out.println(finishBillResponse.getResult());
     }
     @Test
     public void getOrder(){
@@ -75,7 +71,6 @@ public class UserServiceTest extends LmlysApplicationTests {
         GetOrderResponse getOrderResponse=userService.getOrder(Ids[0]);
         System.out.println(getOrderResponse.getState());
         System.out.println(getOrderResponse.getGoodsTitle());
-
     }
     
 }

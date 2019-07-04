@@ -1,5 +1,6 @@
 package team.area237.lmlys;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import team.area237.lmlys.model.request.RegisterRequest;
 import team.area237.lmlys.model.response.RegisterResponse;
@@ -18,6 +19,5 @@ public class RegisterServiceTest extends LmlysApplicationTests {
         System.out.println(i);
         //如果注册成功，需要将用户写入数据库
         registerService.register(registerRequest);
-
     }
 }
