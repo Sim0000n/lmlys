@@ -7,10 +7,7 @@ import team.area237.lmlys.dao.RegisterDao;
 import team.area237.lmlys.model.entity.Province;
 import team.area237.lmlys.model.request.UploadUserAddressRequest;
 import team.area237.lmlys.model.request.UploadUserDataResquest;
-import team.area237.lmlys.model.response.GetOrderResponse;
-import team.area237.lmlys.model.response.GetUserAddressResponse;
-import team.area237.lmlys.model.response.ProvinceCityResponse;
-import team.area237.lmlys.model.response.UserDataResponse;
+import team.area237.lmlys.model.response.*;
 import team.area237.lmlys.service.UserService;
 
 import javax.annotation.Resource;
@@ -90,12 +87,7 @@ public class UserServiceImpl implements UserService {
         provinceCityResponse.setProvinces(provinces1);
         return provinceCityResponse;
     }
-    @Override
-    public int finishBill(String username){
-        int re=registerDao.cartToOrder(username);
-        if(re>0)return 0;
-        return 1;
-    }
+
     @Override
     public int[] getAllOrders(String username){
         List<Integer> list=registerDao.selectOrderByUsername(username);
@@ -106,5 +98,10 @@ public class UserServiceImpl implements UserService {
     public GetOrderResponse getOrder(int id){
         GetOrderResponse getOrderResponse=registerDao.selectOrderById(id);
         return getOrderResponse;
+    }
+
+    @Override
+    public FinishBillResponse finishBill(String username) {
+        return null;
     }
 }

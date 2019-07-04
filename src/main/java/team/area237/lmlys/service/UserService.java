@@ -4,10 +4,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import team.area237.lmlys.model.request.UploadUserAddressRequest;
 import team.area237.lmlys.model.request.UploadUserDataResquest;
-import team.area237.lmlys.model.response.GetOrderResponse;
-import team.area237.lmlys.model.response.GetUserAddressResponse;
-import team.area237.lmlys.model.response.ProvinceCityResponse;
-import team.area237.lmlys.model.response.UserDataResponse;
+import team.area237.lmlys.model.response.*;
+
 @Service
 @Component
 public interface UserService {
@@ -27,7 +25,7 @@ public interface UserService {
     public ProvinceCityResponse getProvinceAndCity();
 
     //结账,成功返回0，失败返回1
-    public int finishBill(String username);
+    public FinishBillResponse finishBill(String username);
 
     //返回用户的所有订单id,按修改时间排序，新的在前，旧的在后
     public int[] getAllOrders(String username);
