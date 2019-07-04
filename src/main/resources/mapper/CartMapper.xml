@@ -14,7 +14,7 @@
     select goods_id,amount from orders where username = #{username};
     </select>
     <delete id="deleteByUsername">
-    delete from v_cart where username=#{username};
+    cartToOrder;
     </delete>
 
     <insert id="insertAllByUsername" >

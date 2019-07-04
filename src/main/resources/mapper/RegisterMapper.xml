@@ -41,8 +41,8 @@
     select province,city,detail_address from user where username = #{username}
     </select>
 
-    <insert id="insertAddressByUsername">
-    insert into user (province,city,detail_address) values (adress) where username=#{username}
+    <insert id="insertAddressByUsername" parameterType="team.area237.lmlys.model.request.UploadUserAddressRequest">
+    insert into user (province,city,detail_address) values (province,city,home) where username=#{username}
     </insert>
 
     <select id="selectProvince">
@@ -62,15 +62,17 @@
     </select>
 
     <resultMap id="ordersbyum" type="team.area237.lmlys.model.response.GetOrderResponse">
-        <result column="goods_id" jdbcType="VARCHAR" property="goodsID"/>
+        <result column="goods_id" jdbcType="int" property="goodsID"/>
         <result column="goods.goods_name" jdbcType="VARCHAR" property="goodsTitle"/>
-        <result column="amount" jdbcType="VARCHAR" property="count"/>
-        <result column="status" jdbcType="VARCHAR" property="state"/>
-        <result column="date" jdbcType="VARCHAR" property="time"/>
+        <result column="amount" jdbcType="int" property="count"/>
+        <result column="status" jdbcType="tinyint" property="state"/>
+        <result column="date" jdbcType="datetime" property="time"/>
     </resultMap>
 
     <select id="selectOrderById">
-    SELECT goods.goods_name FROM goods INNER JOIN orders ON goods.goods_id=orders.goods_id WhERE orders.username=#{username}
+    (select goods_id from orders where username = #{username}) union
+    (SELECT goods.goods_name FROM goods INNER JOIN orders ON goods.goods_id=orders.goods_id WhERE orders.username=#{username})union
+    (select amount,status,date from orders where username = #{username})
     </select>
 
 
