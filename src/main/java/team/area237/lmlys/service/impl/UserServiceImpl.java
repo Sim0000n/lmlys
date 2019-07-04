@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int UploadUserAddress(UploadUserAddressRequest uploadUserAddressRequest, String username) {
-        if(uploadUserAddressRequest.isEmpty()==true)return 1;
+        if(uploadUserAddressRequest.isEmpty())return 1;
         int re=registerDao.insertAddressByUsername(username,uploadUserAddressRequest);
         if(re>0)return 0;
         return 1;
