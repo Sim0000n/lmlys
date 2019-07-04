@@ -13,6 +13,7 @@ import team.area237.lmlys.model.response.ProvinceCityResponse;
 import team.area237.lmlys.model.response.UserDataResponse;
 import team.area237.lmlys.service.UserService;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private RegisterDao registerDao;
-
     @Override
     public UserDataResponse getUserData(String username) {
         UserDataResponse userDataResponse=registerDao.dataSelectByUsername(username);
@@ -92,15 +92,19 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public int finishBill(String username){
-        return 0;
+        int re=registerDao.cartToOrder(username);
+        if(re>0)return 0;
+        return 1;
     }
-    //返回用户的所有订单id,按修改时间排序，新的在前，旧的在后
+    @Override
     public int[] getAllOrders(String username){
-        return null;
+        List<Integer> list=registerDao.selectOrderByUsername(username);
+        int[] re=list.stream().mapToInt(Integer::valueOf).toArray();
+        return re;
     }
-
-    //返回订单详细信息
+    @Override
     public GetOrderResponse getOrder(int id){
-        return null;
+        GetOrderResponse getOrderResponse=registerDao.selectOrderById(id);
+        return getOrderResponse;
     }
 }

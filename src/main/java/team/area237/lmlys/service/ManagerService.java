@@ -1,9 +1,10 @@
 package team.area237.lmlys.service;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import team.area237.lmlys.model.request.UpdateOrderStatusRequest;
 import team.area237.lmlys.model.response.GetOrderResponse;
-
+@Service
 @Component
 public interface ManagerService {
     //返回所有用户的所有订单

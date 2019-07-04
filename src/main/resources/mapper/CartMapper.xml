@@ -3,7 +3,7 @@
 <mapper namespace="team.area237.lmlys.dao.CartDao">
 
     <select id="amountSelectByUsername" resultType="Integer">
-    select sum(case when username=#{username} then 1 end) as result_sum FROM cart
+    select sum(case when username=#{username} then 1 end) as result_sum FROM v_cart
     </select>
 
     <resultMap id="Cartdes" type="team.area237.lmlys.model.entity.Cart">
@@ -11,20 +11,20 @@
         <result column="amount" jdbcType="VARCHAR" property="count"/>
     </resultMap>
     <select id="InfoSelectByUsername" resultMap="Cartdes">
-    select goods_id,amount from cart where username = #{username};
+    select goods_id,amount from orders where username = #{username};
     </select>
     <delete id="deleteByUsername">
-    delete from cart where username=#{username};
+    cartToOrder;
     </delete>
 
     <insert id="insertAllByUsername" >
-        insert into cart (username,goods_id,amount) value
+        insert into v_cart (username,goods_id,amount) value
         <foreach collection="array" item="item" separator=",">
             (#{username},#{item.goodsId},#{item.count})
         </foreach>
     </insert>
     <insert id="insertByUsername" ><!--没添加parameterType，若有问题可添加后再尝试-->
-        insert into cart (username,goods_id,amount) value (#{username},#{goods_id},#{count})
+        insert into v_cart (username,goods_id,amount) value (#{username},#{goods_id},#{count})
     </insert>
 
 
