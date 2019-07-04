@@ -74,6 +74,14 @@
     where id=#{id} AND goods.goods_id=orders.goods_id
     </select>
 
+    <resultMap id="stockbyum" type="team.area237.lmlys.model.entity.Cart">
+        <result column="goods_id" jdbcType="INTEGER" property="goodsID"/>
+        <result column="stock" jdbcType="INTEGER" property="stock"/>
+    </resultMap>
+    <select id="selectStockByUsername" resultMap="stockbyum">
+    select orders.goods_id,goods.stock from goods,orders
+    where username=#{username} AND goods.goods_id=orders.goods_id
+    </select>
 
 
 </mapper>

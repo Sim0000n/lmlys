@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class Cart {
     private int goodsId;
     private int count;
+    private int stock;
 
     public int getGoodsId() {
         return goodsId;
@@ -21,5 +22,13 @@ public class Cart {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public int getStock() {
+        return stock;
     }
 }

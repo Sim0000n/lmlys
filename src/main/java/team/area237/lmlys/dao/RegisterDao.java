@@ -3,6 +3,7 @@ package team.area237.lmlys.dao;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+import team.area237.lmlys.model.entity.Cart;
 import team.area237.lmlys.model.request.RegisterRequest;
 import team.area237.lmlys.model.request.UploadUserAddressRequest;
 import team.area237.lmlys.model.response.GetOrderResponse;
@@ -33,8 +34,9 @@ public interface RegisterDao {
     //返回市名
     List<String> citySelectByProvince(@Param("province")String province);
 
-
-    //购物车转为订单
+    //检查购物车库存,只返回goodsId和stock
+    List<Cart> selectStockByUsername(@Param("username")String username);
+    //生成订单
     int cartToOrder(@Param("username")String username);
     //返回用户订单号，按时间排序,新的在前，旧的在后
     List<Integer> selectOrderByUsername(@Param("username")String username);
