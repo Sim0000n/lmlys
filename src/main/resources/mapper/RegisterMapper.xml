@@ -53,6 +53,25 @@
     SELECT city_name FROM city INNER JOIN province ON city.province_codes=province.province_codes WhERE province.province_name=#{province}
     </select>
 
+    <update id="cartToOrder">
+    update orders set status=1 where username=#{username}
+    </update>
+
+    <select id="selectOrderByUsername">
+    select id from orders where username = #{username} order by date desc
+    </select>
+
+    <resultMap id="ordersbyum" type="team.area237.lmlys.model.response.GetOrderResponse">
+        <result column="goods_id" jdbcType="VARCHAR" property="goodsID"/>
+        <result column="goods.goods_name" jdbcType="VARCHAR" property="goodsTitle"/>
+        <result column="amount" jdbcType="VARCHAR" property="count"/>
+        <result column="status" jdbcType="VARCHAR" property="state"/>
+        <result column="date" jdbcType="VARCHAR" property="time"/>
+    </resultMap>
+
+    <select id="selectOrderById">
+    SELECT goods.goods_name FROM goods INNER JOIN orders ON goods.goods_id=orders.goods_id WhERE orders.username=#{username}
+    </select>
 
 
 </mapper>
