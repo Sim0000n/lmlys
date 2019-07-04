@@ -29,18 +29,18 @@ public class ShoppingServiceTest extends LmlysApplicationTests {
             System.out.println(carts[i].getGoodsId());
         }
         //上传当前用户的购物车信息
-        UpdateCartResquest updateCartResquest=new UpdateCartResquest();
-        List<Cart> carts1=new ArrayList<>();
-        for(int i=1;i<5;i++){
-            Cart cart=new Cart();
-            cart.setGoodsId(i);
-            cart.setCount(i);
-            carts1.add(cart);
-        }
-        Cart[] carts2=carts1.toArray(new Cart[carts1.size()]);
-        updateCartResquest.setCarts(carts2);
-        UploadCartResponse uploadCartResponse=shoppingService.uploadShoppingCart("testName",updateCartResquest);
-        System.out.println(uploadCartResponse.getStatus());
+//        UpdateCartResquest updateCartResquest=new UpdateCartResquest();
+//        List<Cart> carts1=new ArrayList<>();
+//        for(int i=1;i<5;i++){
+//            Cart cart=new Cart();
+//            cart.setGoodsId(i);
+//            cart.setCount(i);
+//            carts1.add(cart);
+//        }
+//        Cart[] carts2=carts1.toArray(new Cart[carts1.size()]);
+//        updateCartResquest.setCarts(carts2);
+//        UploadCartResponse uploadCartResponse=shoppingService.uploadShoppingCart("testName",updateCartResquest);
+//        System.out.println(uploadCartResponse.getStatus());
         //将新商品加入购物车
         NewGoodsToCartRequest newGoodsToCartRequest=new NewGoodsToCartRequest();
         newGoodsToCartRequest.setId(6);

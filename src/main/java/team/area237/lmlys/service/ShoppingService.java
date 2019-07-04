@@ -17,7 +17,7 @@ public interface ShoppingService {
     ShoppingCartResponse getShoppingCart(String username);
 
     //上传当前用户的购物车信息
-    UploadCartResponse uploadShoppingCart(String username, UpdateCartResquest updateCartResquest);
+    UploadCartResponse uploadShoppingCart(String username, UpdateCartResquest[] updateCartResquests);
 
     //将新商品加入购物车
     UploadCartResponse addNewGoodsToCart(String username, NewGoodsToCartRequest newGoodsToCartRequest);

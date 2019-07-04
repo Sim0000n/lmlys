@@ -18,7 +18,7 @@
     <insert id="insertAllByUsername" >
         insert into orders (username,goods_id,amount,status) value
         <foreach collection="array" item="item" separator=",">
-            (#{username},#{item.goodsId},#{item.count},'0')
+            (#{username},#{item.id},#{item.count},'0')
         </foreach>
     </insert>
     <insert id="insertByUsername" ><!--没添加parameterType，若有问题可添加后再尝试-->
