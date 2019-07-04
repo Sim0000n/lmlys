@@ -7,18 +7,15 @@
 
     <resultMap id="ordersbyId" type="team.area237.lmlys.model.response.GetOrderResponse">
         <result column="good_id" jdbcType="INTEGER" property="goodsID"/>
-        <result column="goods.goods_name" jdbcType="VARCHAR" property="goodsTitle"/>
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsTitle"/>
         <result column="amount" jdbcType="INTEGER" property="count"/>
-        <result column="changetime" jdbcType="DATE" property="time"/>
+        <result column="date" jdbcType="DATE" property="time"/>
         <result column="status" jdbcType="VARCHAR" property="state"/>
     </resultMap>
 
     <select id="selectOrderById" resultMap="ordersbyId">
-    (select goods_id from orders where id = #{id}) union
-    (SELECT goods.goods_name FROM goods INNER JOIN orders ON goods.goods_id=orders.goods_id WhERE orders.id=#{id})union
-    (select amount from orders where id = #{id}) union
-    (select changetime from orders where id = #{id})
-    (select status from orders where id = #{id}) union
+    select orders.goods_id,goods.goods_name,amount,status,date from goods,orders
+    where id=#{id} AND goods.goods_id=orders.goods_id
     </select>
 
     <update id="updateStatusById">
