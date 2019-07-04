@@ -3,9 +3,8 @@ package team.area237.lmlys.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import team.area237.lmlys.model.entity.Cart;
 import team.area237.lmlys.model.request.NewGoodsToCartRequest;
-import team.area237.lmlys.model.request.UpdateCartResquest;
+import team.area237.lmlys.model.request.UpdateCartRequest;
 import team.area237.lmlys.service.ShoppingService;
 import team.area237.lmlys.utils.ResponseStatus;
 import team.area237.lmlys.utils.ResponseWrapper;
@@ -37,12 +36,12 @@ public class ShoppingController {
     }
 
     @PostMapping("/api/shoppingCart")
-    ResponseWrapper uploadCarts(@RequestBody UpdateCartResquest[] updateCartResquests, HttpSession session) {
+    ResponseWrapper uploadCarts(@RequestBody UpdateCartRequest[] updateCartRequests, HttpSession session) {
         String username = (String)session.getAttribute("username");
         if(username == null)
             return new ResponseWrapper(ResponseStatus.FAIL_4001, "未登录");
         else
-            return new ResponseWrapper(ResponseStatus.OK, shoppingService.uploadShoppingCart(username, updateCartResquests).getStatus());
+            return new ResponseWrapper(ResponseStatus.OK, shoppingService.uploadShoppingCart(username, updateCartRequests).getStatus());
     }
 
     @PostMapping("/api/shoppingCart/new")

@@ -1,6 +1,6 @@
 package team.area237.lmlys.model.request;
 
-public class UploadUserDataResquest {
+public class UploadUserDataRequest {
     //若为空，则不包含对应的项
     private String email;
     private String phone;

@@ -1,6 +1,6 @@
 package team.area237.lmlys.model.request;
 
-public class UpdateCartResquest {
+public class UpdateCartRequest {
     private int id;
     private int count;
 

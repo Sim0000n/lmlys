@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import team.area237.lmlys.model.request.UploadUserAddressRequest;
-import team.area237.lmlys.model.request.UploadUserDataResquest;
+import team.area237.lmlys.model.request.UploadUserDataRequest;
 import team.area237.lmlys.service.UserService;
 import team.area237.lmlys.utils.ResponseStatus;
 import team.area237.lmlys.utils.ResponseWrapper;
@@ -28,12 +28,12 @@ public class UserController {
     }
 
     @PostMapping("/api/userdata")
-    ResponseWrapper uploadUserData(@RequestBody UploadUserDataResquest uploadUserDataResquest, HttpSession session) {
+    ResponseWrapper uploadUserData(@RequestBody UploadUserDataRequest uploadUserDataRequest, HttpSession session) {
         String username = (String)session.getAttribute("username");
         if(username == null)
             return new ResponseWrapper(ResponseStatus.FAIL_4001, "未登录");
         else
-            return new ResponseWrapper(ResponseStatus.OK, userService.uploadUserData(uploadUserDataResquest, username));
+            return new ResponseWrapper(ResponseStatus.OK, userService.uploadUserData(uploadUserDataRequest, username));
     }
 
     @GetMapping("/api/address")

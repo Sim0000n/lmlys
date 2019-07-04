@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import team.area237.lmlys.dao.CartDao;
 import team.area237.lmlys.model.entity.Cart;
 import team.area237.lmlys.model.request.NewGoodsToCartRequest;
-import team.area237.lmlys.model.request.UpdateCartResquest;
+import team.area237.lmlys.model.request.UpdateCartRequest;
 import team.area237.lmlys.model.response.ShoppingCartCountResponse;
 import team.area237.lmlys.model.response.ShoppingCartResponse;
 import team.area237.lmlys.model.response.UploadCartResponse;
@@ -46,18 +46,18 @@ public class ShoppingServiceImpl implements ShoppingService {
 
     //上传当前用户的购物车信息
     @Override
-    public UploadCartResponse uploadShoppingCart(String username, UpdateCartResquest[] updateCartResquests) {
+    public UploadCartResponse uploadShoppingCart(String username, UpdateCartRequest[] updateCartRequests) {
         UploadCartResponse uploadCartResponse=new UploadCartResponse();
         cartDao.deleteByUsername(username);
-        for (int i = 0; i < updateCartResquests.length - 1; i++) {
-            for (int j = updateCartResquests.length - 1; j > i; j--) {
-                if (updateCartResquests[i].getId()==updateCartResquests[j].getId()) {
+        for (int i = 0; i < updateCartRequests.length - 1; i++) {
+            for (int j = updateCartRequests.length - 1; j > i; j--) {
+                if (updateCartRequests[i].getId()== updateCartRequests[j].getId()) {
                     uploadCartResponse.setStatus(1);
                     return uploadCartResponse;
                 }
             }
         }
-        int r=cartDao.insertAllByUsername(username, updateCartResquests);
+        int r=cartDao.insertAllByUsername(username, updateCartRequests);
         if(r>0){
             uploadCartResponse.setStatus(0);
         }else {

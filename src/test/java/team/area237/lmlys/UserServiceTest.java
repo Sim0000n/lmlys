@@ -1,11 +1,10 @@
 package team.area237.lmlys;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import team.area237.lmlys.model.request.UploadUserAddressRequest;
-import team.area237.lmlys.model.request.UploadUserDataResquest;
+import team.area237.lmlys.model.request.UploadUserDataRequest;
 import team.area237.lmlys.model.response.*;
 import team.area237.lmlys.service.UserService;
 
@@ -27,8 +26,8 @@ public class UserServiceTest extends LmlysApplicationTests {
     }
     @Test
     public void uploadUserData(){
-        UploadUserDataResquest uploadUserDataResquest=new UploadUserDataResquest();
-        int i=userService.uploadUserData(uploadUserDataResquest,"testName");
+        UploadUserDataRequest uploadUserDataRequest =new UploadUserDataRequest();
+        int i=userService.uploadUserData(uploadUserDataRequest,"testName");
         Assert.assertThat(i,is(1));
     }
     @Test
@@ -63,14 +62,14 @@ public class UserServiceTest extends LmlysApplicationTests {
        FinishBillResponse finishBillResponse=userService.finishBill("testName");
        System.out.println(finishBillResponse.getResult());
     }
-    @Test
-    public void getOrder(){
-        int[] Ids=userService.getAllOrders("sb");
-        Assert.assertThat(Ids.length,greaterThan(0));
-        System.out.println(Ids[0]);
-        GetOrderResponse getOrderResponse=userService.getOrder(Ids[0]);
-        System.out.println(getOrderResponse.getState());
-        System.out.println(getOrderResponse.getGoodsTitle());
-    }
+//    @Test
+//    public void getOrder(){
+//        int[] Ids=userService.getAllOrders("sb");
+//        Assert.assertThat(Ids.length,greaterThan(0));
+//        System.out.println(Ids[0]);
+//        GetOrderResponse getOrderResponse=userService.getOrder(Ids[0]);
+//        System.out.println(getOrderResponse.getState());
+//        System.out.println(getOrderResponse.getGoodsTitle());
+//    }
     
 }

@@ -3,14 +3,10 @@ package team.area237.lmlys;
 import org.springframework.beans.factory.annotation.Autowired;
 import team.area237.lmlys.model.entity.Cart;
 import team.area237.lmlys.model.request.NewGoodsToCartRequest;
-import team.area237.lmlys.model.request.UpdateCartResquest;
 import team.area237.lmlys.model.response.ShoppingCartCountResponse;
 import team.area237.lmlys.model.response.ShoppingCartResponse;
 import team.area237.lmlys.model.response.UploadCartResponse;
 import team.area237.lmlys.service.ShoppingService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ShoppingServiceTest extends LmlysApplicationTests {
     @Autowired
@@ -29,7 +25,7 @@ public class ShoppingServiceTest extends LmlysApplicationTests {
             System.out.println(carts[i].getGoodsId());
         }
         //上传当前用户的购物车信息
-//        UpdateCartResquest updateCartResquest=new UpdateCartResquest();
+//        UpdateCartRequest updateCartResquest=new UpdateCartRequest();
 //        List<Cart> carts1=new ArrayList<>();
 //        for(int i=1;i<5;i++){
 //            Cart cart=new Cart();

@@ -3,7 +3,7 @@ package team.area237.lmlys.service;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import team.area237.lmlys.model.request.UploadUserAddressRequest;
-import team.area237.lmlys.model.request.UploadUserDataResquest;
+import team.area237.lmlys.model.request.UploadUserDataRequest;
 import team.area237.lmlys.model.response.*;
 
 @Service
@@ -13,7 +13,7 @@ public interface UserService {
     public UserDataResponse getUserData(String username);
 
     //上传用户绑定信息，成功返回0，失败返回1
-    public int uploadUserData(UploadUserDataResquest uploadUserDataResquest, String username);
+    public int uploadUserData(UploadUserDataRequest uploadUserDataRequest, String username);
 
     //获取用户地址信息
     public GetUserAddressResponse getUserAddress(String username);

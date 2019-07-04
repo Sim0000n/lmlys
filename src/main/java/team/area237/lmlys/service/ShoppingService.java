@@ -3,7 +3,7 @@ package team.area237.lmlys.service;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import team.area237.lmlys.model.request.NewGoodsToCartRequest;
-import team.area237.lmlys.model.request.UpdateCartResquest;
+import team.area237.lmlys.model.request.UpdateCartRequest;
 import team.area237.lmlys.model.response.ShoppingCartCountResponse;
 import team.area237.lmlys.model.response.ShoppingCartResponse;
 import team.area237.lmlys.model.response.UploadCartResponse;
@@ -17,7 +17,7 @@ public interface ShoppingService {
     ShoppingCartResponse getShoppingCart(String username);
 
     //上传当前用户的购物车信息
-    UploadCartResponse uploadShoppingCart(String username, UpdateCartResquest[] updateCartResquests);
+    UploadCartResponse uploadShoppingCart(String username, UpdateCartRequest[] updateCartRequests);
 
     //将新商品加入购物车
     UploadCartResponse addNewGoodsToCart(String username, NewGoodsToCartRequest newGoodsToCartRequest);

@@ -7,11 +7,10 @@ import team.area237.lmlys.dao.RegisterDao;
 import team.area237.lmlys.model.entity.Cart;
 import team.area237.lmlys.model.entity.Province;
 import team.area237.lmlys.model.request.UploadUserAddressRequest;
-import team.area237.lmlys.model.request.UploadUserDataResquest;
+import team.area237.lmlys.model.request.UploadUserDataRequest;
 import team.area237.lmlys.model.response.*;
 import team.area237.lmlys.service.UserService;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,9 +29,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int uploadUserData(UploadUserDataResquest uploadUserDataResquest, String username) {
-        String email = uploadUserDataResquest.getEmail();
-        String phone=uploadUserDataResquest.getPhone();
+    public int uploadUserData(UploadUserDataRequest uploadUserDataRequest, String username) {
+        String email = uploadUserDataRequest.getEmail();
+        String phone= uploadUserDataRequest.getPhone();
         if(email==null&&phone==null){
             return 1;
         }else if(email==null){
