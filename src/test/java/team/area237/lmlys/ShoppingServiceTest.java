@@ -21,12 +21,12 @@ public class ShoppingServiceTest extends LmlysApplicationTests {
         ShoppingCartCountResponse shoppingCartCountResponse = shoppingService.getGoodsNumberInCart("sb");
         System.out.println(shoppingCartCountResponse.getNumber());
         //获取购物车内商品的信息
-        ShoppingCartResponse shoppingCartResponse=shoppingService.getShoppingCart("testName");
+        ShoppingCartResponse shoppingCartResponse=shoppingService.getShoppingCart("Sim0000n");
         Cart[] carts=shoppingCartResponse.getCarts();
         System.out.println("length:");
         System.out.println(carts.length);
         for(int i=0;i<carts.length;i++){
-            System.out.println(carts[i]);
+            System.out.println(carts[i].getGoodsId());
         }
         //上传当前用户的购物车信息
         UpdateCartResquest updateCartResquest=new UpdateCartResquest();
