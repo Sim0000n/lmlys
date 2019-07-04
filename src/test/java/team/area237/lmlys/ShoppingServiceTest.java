@@ -31,7 +31,7 @@ public class ShoppingServiceTest extends LmlysApplicationTests {
         //上传当前用户的购物车信息
         UpdateCartResquest updateCartResquest=new UpdateCartResquest();
         List<Cart> carts1=new ArrayList<>();
-        for(int i=0;i<5;i++){
+        for(int i=1;i<5;i++){
             Cart cart=new Cart();
             cart.setGoodsId(i);
             cart.setCount(i);
@@ -43,7 +43,7 @@ public class ShoppingServiceTest extends LmlysApplicationTests {
         System.out.println(uploadCartResponse.getStatus());
         //将新商品加入购物车
         NewGoodsToCartRequest newGoodsToCartRequest=new NewGoodsToCartRequest();
-        newGoodsToCartRequest.setId(5);
+        newGoodsToCartRequest.setId(6);
         newGoodsToCartRequest.setCount(5);
         UploadCartResponse uploadCartResponse1=shoppingService.addNewGoodsToCart("testName",newGoodsToCartRequest);
         System.out.println(uploadCartResponse1.getStatus());
