@@ -1,5 +1,6 @@
 package team.area237.lmlys;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import team.area237.lmlys.model.response.*;
 import team.area237.lmlys.service.GoodsService;
@@ -52,4 +53,10 @@ public class GoodsServiceTest extends LmlysApplicationTests {
             System.out.println(goodsDetailResponse.getImgs()[i]);
         }
     }
+    @Test
+    public void getStock(){
+        int re=goodsService.getStorageCount(1);
+        System.out.println(re);
+    }
+
 }

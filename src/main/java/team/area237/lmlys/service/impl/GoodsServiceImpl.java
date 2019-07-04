@@ -82,4 +82,9 @@ public class GoodsServiceImpl implements GoodsService {
         return goodsDetailResponse;
     }
 
+    @Override
+    public int getStorageCount(int id) {
+        int re=goodsDao.selectStorageCountById(id);
+        return re;
+    }
 }

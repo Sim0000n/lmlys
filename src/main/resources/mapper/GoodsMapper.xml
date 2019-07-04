@@ -45,4 +45,8 @@
     <select id="selectDescriptionById" resultType="String">
     select description from goods where goods_id=#{id}
     </select>
+
+    <select id="selectStorageCountById" resultType="Integer">
+        select stock from goods where goods_id=#{id}
+    </select>
 </mapper>

@@ -28,4 +28,7 @@ public interface GoodsDao {
     ImgUrls selectUrlsById(@Param("id")int id);
     //根据商品id，返回商品详情
     String selectDescriptionById(@Param("id")int id);
+
+    //返回库存
+    Integer selectStorageCountById(@Param("id")int id);
 }
