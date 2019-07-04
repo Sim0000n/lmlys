@@ -42,7 +42,7 @@
     </select>
 
     <insert id="insertAddressByUsername" parameterType="team.area237.lmlys.model.request.UploadUserAddressRequest">
-    insert into user (province,city,detail_address) values (province,city,home) where username=#{username}
+    insert into user (province,city,detail_address) values (#{province},#{city},#{home}) where username=#{username}
     </insert>
 
     <select id="selectProvince">
