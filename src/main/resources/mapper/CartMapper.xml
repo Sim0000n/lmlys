@@ -10,7 +10,7 @@
         <result column="amount" jdbcType="VARCHAR" property="count"/>
     </resultMap>
     <select id="InfoSelectByUsername" resultMap="Cartdes">
-    select goods_id,amount from orders where username = #{username};
+    select goods_id,amount from orders where username = #{username} and status='0';
     </select>
     <delete id="deleteByUsername">
     delete from orders where username=#{username} AND status='0'
