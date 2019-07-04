@@ -62,11 +62,11 @@
     </select>
 
     <resultMap id="ordersbyum" type="team.area237.lmlys.model.response.GetOrderResponse">
-        <result column="goods_id" jdbcType="int" property="goodsID"/>
+        <result column="goods_id" jdbcType="INTEGER" property="goodsID"/>
         <result column="goods.goods_name" jdbcType="VARCHAR" property="goodsTitle"/>
-        <result column="amount" jdbcType="int" property="count"/>
-        <result column="status" jdbcType="tinyint" property="state"/>
-        <result column="date" jdbcType="datetime" property="time"/>
+        <result column="amount" jdbcType="INTEGER" property="count"/>
+        <result column="status" jdbcType="VARCHAR" property="state"/>
+        <result column="date" jdbcType="DATE" property="time"/>
     </resultMap>
 
     <select id="selectOrderById">
