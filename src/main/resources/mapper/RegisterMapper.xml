@@ -65,12 +65,13 @@
         <result column="goods_id" jdbcType="INTEGER" property="goodsID"/>
         <result column="goods_name" jdbcType="VARCHAR" property="goodsTitle"/>
         <result column="amount" jdbcType="INTEGER" property="count"/>
-        <result column="status" jdbcType="VARCHAR" property="state"/>
         <result column="date" jdbcType="DATE" property="time"/>
+        <result column="status" jdbcType="VARCHAR" property="state"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
     </resultMap>
 
     <select id="selectOrderById" resultMap="ordersbyum">
-    select orders.goods_id,goods.goods_name,amount,status,date from goods,orders
+    select orders.goods_id,goods.goods_name,amount,date,status,username from goods,orders
     where id=#{id} AND goods.goods_id=orders.goods_id
     </select>
 

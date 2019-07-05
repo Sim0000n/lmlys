@@ -14,6 +14,17 @@ public class GetOrderResponse {
     //订单状态
     private String state;
 
+    //返回订单的用户名
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public int getGoodsID() {
         return goodsID;
     }
