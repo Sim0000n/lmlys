@@ -34,7 +34,7 @@ public interface RegisterDao {
     //返回市名
     List<String> citySelectByProvince(@Param("province")String province);
 
-    //检查购物车库存,只返回goodsId和stock
+    //检查购物车库存,返回goodsId和stock,count
     List<Cart> selectStockByUsername(@Param("username")String username);
     //生成订单
     int cartToOrder(@Param("username")String username);
@@ -42,4 +42,6 @@ public interface RegisterDao {
     List<Integer> selectOrderByUsername(@Param("username")String username);
     //根据订单ID返回商品ID，标题，数量，订单状态，状态最后修改时间
     GetOrderResponse selectOrderById(@Param("id")int id);
+    //更新库存
+    int updateStockByGoodsId(@Param("array")Cart[] carts);
 }

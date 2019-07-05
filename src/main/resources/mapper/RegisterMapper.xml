@@ -78,11 +78,24 @@
     <resultMap id="stockbyum" type="team.area237.lmlys.model.entity.Cart">
         <result column="goods_id" jdbcType="INTEGER" property="goodsId"/>
         <result column="stock" jdbcType="INTEGER" property="stock"/>
+        <result column="amount" jdbcType="INTEGER" property="count"/>
     </resultMap>
     <select id="selectStockByUsername" resultMap="stockbyum">
-    select orders.goods_id,goods.stock from goods,orders
+    select orders.goods_id,goods.stock,orders.amount from goods,orders
     where username=#{username} AND goods.goods_id=orders.goods_id
     </select>
-
+    <update id="updateStockByGoodsId">
+        update goods set stock = case
+        <foreach collection="array" item="item" separator=" ">
+            <if test="item.goodsId!=null and item.stock!=null">
+                when goods_id=#{item.goodsId} then #{item.stock}
+            </if>
+        </foreach>
+        end
+        WHERE goods_id IN
+        <foreach collection="array" item="item" index="index" open="(" close=")" separator=",">
+            #{item.goodsId}
+        </foreach>
+    </update>
 
 </mapper>
