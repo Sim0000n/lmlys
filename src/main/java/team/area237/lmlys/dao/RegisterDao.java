@@ -19,13 +19,7 @@ public interface RegisterDao {
     int addUser(@Param("username")String username, @Param("password")String password);
     //获得用户的email和phone
     UserDataResponse dataSelectByUsername(@Param("username")String username);
-    //上传用户phone
-    int insertPhoneByUsername(@Param("username")String username,@Param("phone")String phone);
-    //上传用户email
-    int insertEmailByUsername(@Param("username")String username,@Param("email")String email);
     //同时插入phone和email
-    int insertBothByUsername(@Param("username")String username,@Param("phone")String phone,@Param("email")String email);
-
     int updateBothByUsername(@Param("username")String username,@Param("phone")String phone,@Param("email")String email);
     //获取用户地址信息
     GetUserAddressResponse selectAddressByUsername(@Param("username")String username);

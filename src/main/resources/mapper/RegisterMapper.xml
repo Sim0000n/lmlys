@@ -19,17 +19,6 @@
     select email,tel from user where username = #{username}
     </select>
 
-    <insert id="insertPhoneByUsername">
-    update user set tel=#{phone} where username=#{username}
-    </insert>
-
-    <insert id="insertEmailByUsername">
-    update user set email=#{email} where username=#{username}
-    </insert>
-
-    <insert id="insertBothByUsername">
-        insert into user(tel,email,username) values (#{phone},#{email},#{username});
-    </insert>
     <update id="updateBothByUsername">
     update user set tel=#{phone},email=#{email} where username=#{username}
     </update>
