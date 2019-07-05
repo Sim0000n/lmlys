@@ -32,6 +32,8 @@ public class UserServiceImpl implements UserService {
     public int uploadUserData(UploadUserDataRequest uploadUserDataRequest, String username) {
         String email = uploadUserDataRequest.getEmail();
         String phone= uploadUserDataRequest.getPhone();
+        if(email.length()==0)email=null;
+        if(phone.length()==0)phone=null;
         int re=registerDao.updateBothByUsername(username,phone,email);
         if(re>0)return 0;
         return 1;
@@ -45,6 +47,7 @@ public class UserServiceImpl implements UserService {
             getUserAddressResponse.setEmpty(true);
             return getUserAddressResponse;
         }
+        getUserAddressResponse.setEmpty(false);
         String str1=getUserAddressResponse.getCity();
         String str2=getUserAddressResponse.getHome();
         String str3=getUserAddressResponse.getProvince();
@@ -55,7 +58,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public int UploadUserAddress(UploadUserAddressRequest uploadUserAddressRequest, String username) {
         if(uploadUserAddressRequest.isEmpty())return 1;
-        int re=registerDao.insertAddressByUsername(username,uploadUserAddressRequest);
+        String res=registerDao.selectReciver(username);
+        int re=0;
+        if(res!=null){
+            re=registerDao.updateAddressByUsername(username,uploadUserAddressRequest);
+        }else {
+            re=registerDao.insertAddressByUsername(username,uploadUserAddressRequest);
+        }
         if(re>0)return 0;
         return 1;
     }

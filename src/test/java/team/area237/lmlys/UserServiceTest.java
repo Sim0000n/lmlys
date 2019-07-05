@@ -49,6 +49,7 @@ public class UserServiceTest extends LmlysApplicationTests {
 //        Assert.assertThat(i,is(0));
 //    }
 
+
     @Test
     public void getAllAddress(){
         ProvinceCityResponse provinceCityResponse=userService.getProvinceAndCity();
