@@ -23,8 +23,6 @@ public class ShoppingServiceTest extends LmlysApplicationTests {
         //获取购物车内商品的信息
         ShoppingCartResponse shoppingCartResponse=shoppingService.getShoppingCart("Sim0000n");
         Cart[] carts=shoppingCartResponse.getCarts();
-        System.out.println("length:");
-        System.out.println(carts.length);
         for(int i=0;i<carts.length;i++){
             System.out.println(carts[i].getGoodsId());
         }
