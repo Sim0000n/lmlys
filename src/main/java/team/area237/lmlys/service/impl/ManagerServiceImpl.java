@@ -30,7 +30,6 @@ public class ManagerServiceImpl implements ManagerService {
         if(re>0)return 0;
         return 1;
     }
-
     @Override
     public boolean isManager(String username) {
         int re=managerDao.selectLevelByUsername(username);

@@ -20,7 +20,7 @@
     </select>
 
     <update id="updateStatusById">
-    update orders set status=#{status} where id=#{id}
+    update orders set orders_stadtus=#{status} where id=#{id}
     </update>
 
     <select id="selectLevelByUsername" resultType="integer">
