@@ -62,7 +62,7 @@
         <result column="amount" jdbcType="INTEGER" property="count"/>
         <result column="date" jdbcType="DATE" property="time"/>
         <result column="status" jdbcType="VARCHAR" property="state"/>
-        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="username" jdbcType="VARCHAR" property="user"/>
     </resultMap>
 
     <select id="selectOrderById" resultMap="ordersbyum">
