@@ -23,7 +23,6 @@ public class UserServiceImpl implements UserService {
     public UserDataResponse getUserData(String username) {
         UserDataResponse userDataResponse=registerDao.dataSelectByUsername(username);
         if(userDataResponse==null){
-            registerDao.insertBothByUsername(username,null,null);
             userDataResponse=new UserDataResponse();
         }
         return userDataResponse;

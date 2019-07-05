@@ -70,7 +70,7 @@ public class UserServiceTest extends LmlysApplicationTests {
         int[] Ids=userService.getAllOrders("testName");
         Assert.assertThat(Ids.length,greaterThan(0));
         System.out.println(Ids[0]);
-        GetOrderResponse getOrderResponse=userService.getOrder(196);
+        GetOrderResponse getOrderResponse=userService.getOrder(168);
         System.out.println(getOrderResponse.getUsername());
         System.out.println(getOrderResponse.getState());
         System.out.println(getOrderResponse.getGoodsTitle());
