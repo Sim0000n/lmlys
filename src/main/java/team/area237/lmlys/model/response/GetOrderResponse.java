@@ -15,14 +15,14 @@ public class GetOrderResponse {
     private String state;
 
     //返回订单的用户名
-    private String username;
+    private String user;
 
-    public String getUsername() {
-        return username;
+    public String getUser() {
+        return user;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public int getGoodsID() {
