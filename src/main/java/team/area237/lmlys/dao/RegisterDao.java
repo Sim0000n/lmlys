@@ -43,5 +43,5 @@ public interface RegisterDao {
     //根据订单ID返回商品ID，标题，数量，订单状态，状态最后修改时间
     GetOrderResponse selectOrderById(@Param("id")int id);
     //更新库存
-    int updateStockByGoodsId(@Param("id")int[] id,@Param("remain")int[] remain);
+    int updateStockByGoodsId(@Param("array")Cart[] carts);
 }

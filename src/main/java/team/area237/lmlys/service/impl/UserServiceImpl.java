@@ -107,7 +107,12 @@ public class UserServiceImpl implements UserService {
         List<Integer> soldOut=new ArrayList<>();
         List<Cart> list=registerDao.selectStockByUsername(username);
         for(int i=0;i<list.size();i++){
-            if(list.get(i).getStock()==0)soldOut.add(list.get(i).getGoodsId());
+            int remain=list.get(i).getStock()-list.get(i).getCount();
+            if(remain<0){
+                soldOut.add(list.get(i).getGoodsId());
+            }else {
+                list.get(i).setStock(remain);
+            }
         }
         if(soldOut.size()>0){
             finishBillResponse.setResult(1);
@@ -116,15 +121,10 @@ public class UserServiceImpl implements UserService {
         }
         int res=registerDao.cartToOrder(username);
         if(res>0){
+            Cart[] carts=list.toArray(new Cart[list.size()]);
             //剩余库存
-            int[] Ids=new int[list.size()];
-            int[] remain=new int[list.size()];
-            for(int i=0;i<remain.length;i++){
-                Ids[i]=list.get(i).getGoodsId();
-                remain[i]=list.get(i).getStock()-list.get(i).getCount();
-            }
-            int re=registerDao.updateStockByGoodsId(Ids,remain);
-            if(re==remain.length){
+            int re=registerDao.updateStockByGoodsId(carts);
+            if(re==list.size()){
                 finishBillResponse.setResult(0);
                 return finishBillResponse;
             }

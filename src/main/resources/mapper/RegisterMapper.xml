@@ -84,7 +84,17 @@
     where username=#{username} AND goods.goods_id=orders.goods_id
     </select>
     <update id="updateStockByGoodsId">
-        update goods set stock=#{remain} where goods_id=#{id}
+        update goods set stock = case
+        <foreach collection="array" item="item" separator=" ">
+            <if test="item.goodsId!=null and item.stock!=null">
+                when goods_id=#{item.goodsId} then #{item.stock}
+            </if>
+        </foreach>
+        end
+        WHERE goods_id IN
+        <foreach collection="array" item="item" index="index" open="(" close=")" separator=",">
+            #{item.goodsId}
+        </foreach>
     </update>
 
 </mapper>
