@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="team.area237.lmlys.dao.ManagerDao">
     <select id="selectAllOrders" resultType="integer">
-    select id from orders
+    select id from orders where status=1
     </select>
 
     <resultMap id="ordersbyId" type="team.area237.lmlys.model.response.GetOrderResponse">
@@ -10,7 +10,7 @@
         <result column="goods_name" jdbcType="VARCHAR" property="goodsTitle"/>
         <result column="amount" jdbcType="INTEGER" property="count"/>
         <result column="date" jdbcType="DATE" property="time"/>
-        <result column="status" jdbcType="VARCHAR" property="state"/>
+        <result column="orders_status" jdbcType="VARCHAR" property="state"/>
         <result column="username" jdbcType="VARCHAR" property="user"/>
     </resultMap>
 
