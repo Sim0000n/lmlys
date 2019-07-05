@@ -23,6 +23,7 @@ public class UserServiceImpl implements UserService {
     public UserDataResponse getUserData(String username) {
         UserDataResponse userDataResponse=registerDao.dataSelectByUsername(username);
         if(userDataResponse==null){
+            registerDao.insertBothByUsername(username,null,null);
             userDataResponse=new UserDataResponse();
         }
         return userDataResponse;
@@ -32,18 +33,8 @@ public class UserServiceImpl implements UserService {
     public int uploadUserData(UploadUserDataRequest uploadUserDataRequest, String username) {
         String email = uploadUserDataRequest.getEmail();
         String phone= uploadUserDataRequest.getPhone();
-        if(email==null&&phone==null){
-            return 1;
-        }else if(email==null){
-            int re=registerDao.insertPhoneByUsername(username,phone);
-            if(re>0)return 0;
-        }else if(phone==null){
-            int re=registerDao.insertEmailByUsername(username,email);
-            if(re>0)return 0;
-        }else {
-            int re=registerDao.insertBothByUsername(username,phone,email);
-            if(re>0)return 0;
-        }
+        int re=registerDao.updateBothByUsername(username,phone,email);
+        if(re>0)return 0;
         return 1;
     }
 

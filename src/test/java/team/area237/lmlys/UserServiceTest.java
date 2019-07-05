@@ -27,8 +27,8 @@ public class UserServiceTest extends LmlysApplicationTests {
     @Test
     public void uploadUserData(){
         UploadUserDataRequest uploadUserDataResquest=new UploadUserDataRequest();
-        int i=userService.uploadUserData(uploadUserDataResquest,"testName");
-        Assert.assertThat(i,is(1));
+        int i=userService.uploadUserData(uploadUserDataResquest,"latlaj");
+        Assert.assertThat(i,is(0));
     }
     @Test
     public void GetAddress(){

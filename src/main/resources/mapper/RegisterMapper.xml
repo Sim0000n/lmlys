@@ -28,8 +28,11 @@
     </insert>
 
     <insert id="insertBothByUsername">
-    update user set tel=#{phone},email=#{email} where username=#{username}
+        insert into user(tel,email,username) values (#{phone},#{email},#{username});
     </insert>
+    <update id="updateBothByUsername">
+    update user set tel=#{phone},email=#{email} where username=#{username}
+    </update>
 
     <resultMap id="UserAddress" type="team.area237.lmlys.model.response.GetUserAddressResponse">
         <result column="province" jdbcType="VARCHAR" property="province"/>
