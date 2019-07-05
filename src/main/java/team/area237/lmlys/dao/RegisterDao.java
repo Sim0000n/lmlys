@@ -21,9 +21,11 @@ public interface RegisterDao {
     UserDataResponse dataSelectByUsername(@Param("username")String username);
     //同时插入phone和email
     int updateBothByUsername(@Param("username")String username,@Param("phone")String phone,@Param("email")String email);
+    String selectReciver(@Param("username")String username);
     //获取用户地址信息
     GetUserAddressResponse selectAddressByUsername(@Param("username")String username);
     //上传用户地址信息
+    int updateAddressByUsername(@Param("username")String username,@Param("address")UploadUserAddressRequest uploadUserAddressRequest);
     int insertAddressByUsername(@Param("username")String username, @Param("address")UploadUserAddressRequest uploadUserAddressRequest);
     //只返回省名
     List<String> selectProvince();

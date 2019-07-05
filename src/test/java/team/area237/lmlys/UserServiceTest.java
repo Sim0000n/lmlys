@@ -46,6 +46,8 @@ public class UserServiceTest extends LmlysApplicationTests {
         uploadUserAddressRequest.setCity("武汉市");
         uploadUserAddressRequest.setHome("默认街道");
         int i=userService.UploadUserAddress(uploadUserAddressRequest,"testName");
+        GetUserAddressResponse getUserAddressResponse=userService.getUserAddress("testName");
+        System.out.println(getUserAddressResponse.getHome());
         Assert.assertThat(i,is(0));
     }
 
