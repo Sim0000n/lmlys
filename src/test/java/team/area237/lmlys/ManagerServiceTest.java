@@ -21,15 +21,15 @@ public class ManagerServiceTest extends LmlysApplicationTests {
     }
     @Test
     public void selectOrderById(){
-        GetOrderResponse getOrderResponse=managerService.getOrderById(168);
+        GetOrderResponse getOrderResponse=managerService.getOrderById(167);
         System.out.println(getOrderResponse.getGoodsTitle());
         System.out.println(getOrderResponse.getTime());
     }
     @Test
     public void updateStatusById(){
         UpdateOrderStatusRequest updateOrderStatusRequest=new UpdateOrderStatusRequest();
-        updateOrderStatusRequest.setStatus("3");
-        updateOrderStatusRequest.setId(168);
+        updateOrderStatusRequest.setStatus("1");
+        updateOrderStatusRequest.setId(167);
         int re=managerService.updateOrderStatus(updateOrderStatusRequest);
         Assert.assertThat(re,is(0));
     }

@@ -53,7 +53,7 @@
     </update>
 
     <select id="selectOrderByUsername" resultType="Integer">
-    select id from orders where username = #{username} order by date desc
+    select id from orders where username = #{username} and status=1 order by date desc
     </select>
 
     <resultMap id="ordersbyum" type="team.area237.lmlys.model.response.GetOrderResponse">
@@ -77,7 +77,7 @@
     </resultMap>
     <select id="selectStockByUsername" resultMap="stockbyum">
     select orders.goods_id,goods.stock,orders.amount from goods,orders
-    where username=#{username} AND goods.goods_id=orders.goods_id
+    where orders.status=0 and username=#{username} AND goods.goods_id=orders.goods_id
     </select>
     <update id="updateStockByGoodsId">
         update goods set stock = case

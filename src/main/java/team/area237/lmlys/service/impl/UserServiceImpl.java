@@ -32,8 +32,8 @@ public class UserServiceImpl implements UserService {
     public int uploadUserData(UploadUserDataRequest uploadUserDataRequest, String username) {
         String email = uploadUserDataRequest.getEmail();
         String phone= uploadUserDataRequest.getPhone();
-        if(email.length()==0)email=null;
-        if(phone.length()==0)phone=null;
+        if(email!=null && email.length()==0)email=null;
+        if(phone!=null && phone.length()==0)phone=null;
         int re=registerDao.updateBothByUsername(username,phone,email);
         if(re>0)return 0;
         return 1;
@@ -112,6 +112,10 @@ public class UserServiceImpl implements UserService {
             }else {
                 list.get(i).setStock(remain);
             }
+        }
+        if(list.size()==0||list==null){
+            finishBillResponse.setResult(2);
+            return finishBillResponse;
         }
         if(soldOut.size()>0){
             finishBillResponse.setResult(1);
