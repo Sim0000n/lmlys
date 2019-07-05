@@ -15,8 +15,8 @@
     </resultMap>
 
     <select id="selectOrderById" resultMap="ordersbyId">
-    select orders.goods_id,goods.goods_name,amount,status,date,username from goods,orders
-    where id=#{id} AND goods.goods_id=orders.goods_id
+    select orders.goods_id,goods.goods_name,amount,orders_status,date,username from goods,orders
+    where id=#{id} and status=1 AND goods.goods_id=orders.goods_id
     </select>
 
     <update id="updateStatusById">
