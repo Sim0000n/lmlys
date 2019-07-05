@@ -6,15 +6,16 @@
     </select>
 
     <resultMap id="ordersbyId" type="team.area237.lmlys.model.response.GetOrderResponse">
-        <result column="good_id" jdbcType="INTEGER" property="goodsID"/>
+        <result column="goods_id" jdbcType="INTEGER" property="goodsID"/>
         <result column="goods_name" jdbcType="VARCHAR" property="goodsTitle"/>
         <result column="amount" jdbcType="INTEGER" property="count"/>
         <result column="date" jdbcType="DATE" property="time"/>
         <result column="status" jdbcType="VARCHAR" property="state"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
     </resultMap>
 
     <select id="selectOrderById" resultMap="ordersbyId">
-    select orders.goods_id,goods.goods_name,amount,status,date from goods,orders
+    select orders.goods_id,goods.goods_name,amount,status,date,username from goods,orders
     where id=#{id} AND goods.goods_id=orders.goods_id
     </select>
 

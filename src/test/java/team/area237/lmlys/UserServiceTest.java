@@ -48,6 +48,7 @@ public class UserServiceTest extends LmlysApplicationTests {
         int i=userService.UploadUserAddress(uploadUserAddressRequest,"testName");
         Assert.assertThat(i,is(0));
     }
+
     @Test
     public void getAllAddress(){
         ProvinceCityResponse provinceCityResponse=userService.getProvinceAndCity();
@@ -57,11 +58,13 @@ public class UserServiceTest extends LmlysApplicationTests {
         }
         Assert.assertThat(num,greaterThan(293));
     }
+
     @Test
     public void finishBill(){
        FinishBillResponse finishBillResponse=userService.finishBill("testName");
        System.out.println(finishBillResponse.getResult());
     }
+
     @Test
     public void getOrder(){
         int[] Ids=userService.getAllOrders("testName");
@@ -71,5 +74,4 @@ public class UserServiceTest extends LmlysApplicationTests {
         System.out.println(getOrderResponse.getState());
         System.out.println(getOrderResponse.getGoodsTitle());
     }
-    
 }
