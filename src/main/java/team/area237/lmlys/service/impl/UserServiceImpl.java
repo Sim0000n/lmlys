@@ -100,6 +100,7 @@ public class UserServiceImpl implements UserService {
         return getOrderResponse;
     }
 
+    //结账,成功返回0，库存不足返回1
     @Override
     public FinishBillResponse finishBill(String username) {
         FinishBillResponse finishBillResponse=new FinishBillResponse();
@@ -115,8 +116,18 @@ public class UserServiceImpl implements UserService {
         }
         int res=registerDao.cartToOrder(username);
         if(res>0){
-            finishBillResponse.setResult(0);
-            return finishBillResponse;
+            //剩余库存
+            int[] Ids=new int[list.size()];
+            int[] remain=new int[list.size()];
+            for(int i=0;i<remain.length;i++){
+                Ids[i]=list.get(i).getGoodsId();
+                remain[i]=list.get(i).getStock()-list.get(i).getCount();
+            }
+            int re=registerDao.updateStockByGoodsId(Ids,remain);
+            if(re==remain.length){
+                finishBillResponse.setResult(0);
+                return finishBillResponse;
+            }
         }
         finishBillResponse.setResult(2);
         return finishBillResponse;

@@ -77,11 +77,14 @@
     <resultMap id="stockbyum" type="team.area237.lmlys.model.entity.Cart">
         <result column="goods_id" jdbcType="INTEGER" property="goodsId"/>
         <result column="stock" jdbcType="INTEGER" property="stock"/>
+        <result column="amount" jdbcType="INTEGER" property="count"/>
     </resultMap>
     <select id="selectStockByUsername" resultMap="stockbyum">
-    select orders.goods_id,goods.stock from goods,orders
+    select orders.goods_id,goods.stock,orders.amount from goods,orders
     where username=#{username} AND goods.goods_id=orders.goods_id
     </select>
-
+    <update id="updateStockByGoodsId">
+        update goods set stock=#{remain} where goods_id=#{id}
+    </update>
 
 </mapper>
