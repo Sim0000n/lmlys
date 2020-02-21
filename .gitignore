@@ -5,3 +5,4 @@
 # 忽略所有.o和 .a文件.
 /.idea
 /target
+/src/main/resources/application.properties
